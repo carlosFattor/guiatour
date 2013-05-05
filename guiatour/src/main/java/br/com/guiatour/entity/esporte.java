@@ -4,33 +4,41 @@
  */
 package br.com.guiatour.entity;
 
+import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  *
  * @author Carlos
  */
-public class BarRest {
+@Entity
+@Table
+public class esporte implements Serializable{
     private static final long serialVersionUID = 1L;
     
-    @Column(name = "foto_bar", nullable = false, length = 80)
-    private String fotoBar;
+    @Column(name = "foto_esporte")
+    private String fotoEsporte;
     @Column(name = "categoria")
-    private String categoria;    
+    private String categoria;
+    @Column(name = "instrutor")
+    private String instrutor;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "custo_medio")
     private Float custoMedio;
     @Column(name = "id_ponto")
     private Integer idPonto;
 
-    public BarRest() {
+    public esporte() {
     }
 
-    public String getFotoBar() {
-        return fotoBar;
+    public String getFotoEsporte() {
+        return fotoEsporte;
     }
 
-    public void setFotoBar(String fotoBar) {
-        this.fotoBar = fotoBar;
+    public void setFotoEsporte(String fotoEsporte) {
+        this.fotoEsporte = fotoEsporte;
     }
 
     public String getCategoria() {
@@ -39,6 +47,14 @@ public class BarRest {
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
+    }
+
+    public String getInstrutor() {
+        return instrutor;
+    }
+
+    public void setInstrutor(String instrutor) {
+        this.instrutor = instrutor;
     }
 
     public Float getCustoMedio() {
@@ -60,7 +76,7 @@ public class BarRest {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 79 * hash + (this.fotoBar != null ? this.fotoBar.hashCode() : 0);
+        hash = 31 * hash + (this.fotoEsporte != null ? this.fotoEsporte.hashCode() : 0);
         return hash;
     }
 
@@ -72,10 +88,10 @@ public class BarRest {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final BarRest other = (BarRest) obj;
-        if ((this.fotoBar == null) ? (other.fotoBar != null) : !this.fotoBar.equals(other.fotoBar)) {
+        final esporte other = (esporte) obj;
+        if ((this.fotoEsporte == null) ? (other.fotoEsporte != null) : !this.fotoEsporte.equals(other.fotoEsporte)) {
             return false;
         }
         return true;
-    }
+    }  
 }

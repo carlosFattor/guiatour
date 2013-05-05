@@ -4,33 +4,39 @@
  */
 package br.com.guiatour.entity;
 
+import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  *
  * @author Carlos
  */
-public class BarRest {
+@Entity
+@Table
+public class transporte implements Serializable{
     private static final long serialVersionUID = 1L;
-    
-    @Column(name = "foto_bar", nullable = false, length = 80)
-    private String fotoBar;
+
+    @Column(name = "foto_transporte")
+    private String fotoTransporte;
     @Column(name = "categoria")
-    private String categoria;    
+    private String categoria;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "custo_medio")
     private Float custoMedio;
     @Column(name = "id_ponto")
     private Integer idPonto;
-
-    public BarRest() {
+    
+    public transporte() {
     }
 
-    public String getFotoBar() {
-        return fotoBar;
+    public String getFotoTransporte() {
+        return fotoTransporte;
     }
 
-    public void setFotoBar(String fotoBar) {
-        this.fotoBar = fotoBar;
+    public void setFotoTransporte(String fotoTransporte) {
+        this.fotoTransporte = fotoTransporte;
     }
 
     public String getCategoria() {
@@ -60,7 +66,7 @@ public class BarRest {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 79 * hash + (this.fotoBar != null ? this.fotoBar.hashCode() : 0);
+        hash = 17 * hash + (this.fotoTransporte != null ? this.fotoTransporte.hashCode() : 0);
         return hash;
     }
 
@@ -72,10 +78,11 @@ public class BarRest {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final BarRest other = (BarRest) obj;
-        if ((this.fotoBar == null) ? (other.fotoBar != null) : !this.fotoBar.equals(other.fotoBar)) {
+        final transporte other = (transporte) obj;
+        if ((this.fotoTransporte == null) ? (other.fotoTransporte != null) : !this.fotoTransporte.equals(other.fotoTransporte)) {
             return false;
         }
         return true;
     }
+    
 }
