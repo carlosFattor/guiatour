@@ -5,14 +5,19 @@
 package br.com.guiatour.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 /**
  *
  * @author Carlos
  */
-public class BarRest {
-    private static final long serialVersionUID = 1L;
-    
+@Entity
+@Table(name="bar_rest")
+@PrimaryKeyJoinColumn(name = "Ponto_ID_Ponto", referencedColumnName = "id_ponto")
+public class BarRest extends Pontoturistico{
+        
     @Column(name = "foto_bar", nullable = false, length = 80)
     private String fotoBar;
     @Column(name = "categoria")

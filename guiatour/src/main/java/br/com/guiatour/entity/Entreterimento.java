@@ -4,10 +4,10 @@
  */
 package br.com.guiatour.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -17,10 +17,10 @@ import javax.persistence.TemporalType;
  * @author Carlos
  */
 @Entity
-@Table
-public class Entreterimento implements Serializable{
-    private static final long serialVersionUID = 1L;
-    
+@Table(name="ponto_turistico")
+@PrimaryKeyJoinColumn(name = "Ponto_ID_Ponto", referencedColumnName = "id_ponto")
+public class Entreterimento extends Pontoturistico{
+        
     @Column(name = "foto_entreterimento")
     private String fotoEntreterimento;
     @Column(name = "categoria")

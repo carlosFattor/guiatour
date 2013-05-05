@@ -51,9 +51,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Pontoturistico.findByIdGuia", query = "SELECT p FROM Pontoturistico p WHERE p.idGuia = :idGuia"),
     @NamedQuery(name = "Pontoturistico.findByIdUsuario", query = "SELECT p FROM Pontoturistico p WHERE p.idUsuario = :idUsuario")})
 
-@DiscriminatorColumn(name = "EMP_TYPE", discriminatorType = DiscriminatorType.STRING)
-
 public abstract class Pontoturistico implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -95,7 +94,7 @@ public abstract class Pontoturistico implements Serializable {
     private Integer idUsuario;
     @Transient
     private Integer classificacao;
-    
+
     public Pontoturistico() {
     }
 
@@ -242,6 +241,4 @@ public abstract class Pontoturistico implements Serializable {
     public void setClassificacao(Integer classificacao) {
         this.classificacao = classificacao;
     }
-    
 }
-
