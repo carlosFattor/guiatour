@@ -13,23 +13,30 @@ public class JpaUtil {
 
     private static final SessionFactory sessionFactory;
     public static final String HIBERNATE_SESSION = "hibernate_session";
-    
+
     static {
+
         try {
-            System.out.println("tentando abrir uma sessionfactory");
-            Configuration conf = new Configuration().configure();
-            ServiceRegistry serviceRegistryBuilder = new ServiceRegistryBuilder().applySettings(conf.getProperties()).buildServiceRegistry();
-            
-            sessionFactory = conf.buildSessionFactory(serviceRegistryBuilder);
-            
-            System.out.println("Session factory criada com sucesso");
-        } catch (Exception e) {
-            System.out.println("Ocorreu um erro ao iniciar SF." + e);
-            throw new ExceptionInInitializerError(e);
+
+            System.out.println("Tentando configurar a SF");
+
+            Configuration configuration = new Configuration();
+            configuration.configure();
+            ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().
+                    applySettings(configuration.getProperties()).buildServiceRegistry();
+
+            sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+
+            System.out.println("Session factory criada corretamente");
+        } catch (Exception ex) {
+            System.out.println("Ocorreu um  erro ao iniciar a SF. " + ex);
+            throw new ExceptionInInitializerError(ex);
         }
+
+
     }
-    
-    public static SessionFactory getSessionFactory(){
+
+    public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }
 }
