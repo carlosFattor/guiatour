@@ -1,31 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-    <session-factory>
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/guiatourdb?zeroDateTimeBehavior=convertToNull</property>
-        <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">C$rl0s01</property>
-    
-        <!-- HABILITA A EXIBIÇÃO DO SQL GERADO PELO HIBERNATE E FORMATA-O -->
-        
-        <property name="hibernate.show_sql">true</property>
-        <property name="hibernate.format_sql">true</property>
-        
-        <!-- HABILITA A ATUALIZAÇÃO AUTOMÁTICA DA ESTRUTURA DE TABELAS PELO HIBERNATE -->
-        
-        <property name="hibernate.hbm2ddl.auto">update</property>
-    
-        <!-- CONFIGURAÇÕES DO POOL DE CONEXÕES-->
-        
-        <property name="c3p0.min_size">1</property>
-        <property name="c3p0.max_size">20</property>
-        <property name="c3p0.timeout">300</property>
-        <property name="c3p0.max_statements">80</property>
-        <property name="c3p0.idle_test_period">300</property>
-               
-        
-        
-    </session-factory>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/guiatourdb</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">C$rl0s01</property>
+    <!-- HABILITA A EXIBIÇÃO DO SQL GERADO PELO HIBERNATE E FORMATA-O -->
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.format_sql">true</property>
+    <!-- HABILITA A ATUALIZAÇÃO AUTOMÁTICA DA ESTRUTURA DE TABELAS PELO HIBERNATE -->
+    <property name="hibernate.hbm2ddl.auto">create-drop</property>
+    <!-- CONFIGURAÇÕES DO POOL DE CONEXÕES-->
+    <property name="c3p0.min_size">1</property>
+    <property name="c3p0.max_size">20</property>
+    <property name="c3p0.timeout">300</property>
+    <property name="c3p0.max_statements">80</property>
+    <property name="c3p0.idle_test_period">300</property>
+    <!-- LISTA DE ENTIDADES -->
+    <mapping class="br.com.guiatour.entity.Avaliaguia"/>
+    <mapping class="br.com.guiatour.entity.Avaliaponto"/>
+    <mapping class="br.com.guiatour.entity.BarRest"/>
+    <mapping class="br.com.guiatour.entity.Pontoturistico"/>
+    <mapping class="br.com.guiatour.entity.Comentario"/>
+    <mapping class="br.com.guiatour.entity.Download"/>
+    <mapping class="br.com.guiatour.entity.Entreterimento"/>
+    <mapping class="br.com.guiatour.entity.Excluir"/>
+    <mapping class="br.com.guiatour.entity.Usuario"/>
+    <mapping class="br.com.guiatour.entity.esporte"/>
+    <mapping class="br.com.guiatour.entity.estadia"/>
+    <mapping class="br.com.guiatour.entity.transporte"/>
+    <event type="auto-flush"/>
+  </session-factory>
 </hibernate-configuration>
