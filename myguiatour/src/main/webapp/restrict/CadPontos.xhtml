@@ -23,15 +23,15 @@
 
                                 <h:inputHidden id="lat" />
                                 <h:inputHidden id="lng" />
-                                <h:inputHidden value="#{cadPontosBB.guiaStatus}" />
+                                <h:inputHidden value="#{cadPontoBB.guiaStatus}" />
                                 <h:panelGrid columns="3">                                          
-                                    <p:inputText id="inputAddressId" value="#{cadPontosBB.nomePesq}"  
+                                    <p:inputText id="inputAddressId" value="#{cadPontoBB.nomePesq}"  
                                                  required="true" label="Nome Guia">  
                                         <f:validateLength minimum="3" />  
                                     </p:inputText>
-                                    <h:inputHidden value="#{cadPontosBB.guiaStatus}" id="resultado" />
+                                    <h:inputHidden value="#{cadPontoBB.guiaStatus}" id="resultado" />
                                     <p:commandButton value="Pesquisar"  type="submit" update="@form, :formMap:cityMap, :resultPoints:dtPonto" 
-                                                     id="ajax" actionListener="#{cadPontosBB.pesqGuia()}" styleClass="ui-priority-primary" >
+                                                     id="ajax" actionListener="#{cadPontoBB.pesqGuia()}" styleClass="ui-priority-primary" >
 
                                     </p:commandButton>
                                 </h:panelGrid>  
@@ -42,7 +42,7 @@
                                     '#{component.parent.findComponent('lat').clientId}',
                                     '#{component.parent.findComponent('lng').clientId}',
                                     5,#{p:widgetVar('cityMap')}.getMap()), confirmation.hide()" value="Sim" update="messages" oncomplete="dlgGuia.show()" >
-                                    <p:remoteCommand name="rmtCommandGeocoder" action="submit" actionListener="#{cadPontosBB.coordenada}"/>
+                                    <p:remoteCommand name="rmtCommandGeocoder" action="submit" actionListener="#{cadPontoBB.coordenada}"/>
 
                                 </p:commandButton>  
                                 <p:commandButton id="decline" value="Não" onclick="confirmation.hide()"  type="button" />   
@@ -53,16 +53,16 @@
                         <p:panel style="border-style: none;"> 
                             <h:form id="formMap">
                                 <f:view>                                                                         
-                                    <p:gmap id="cityMap" center="#{cadPontosBB.city}" zoom="12" type="HYBRID" model="#{cadPontosBB.simpleModel}"
+                                    <p:gmap id="cityMap" center="#{cadPontoBB.city}" zoom="12" type="HYBRID" model="#{cadPontoBB.simpleModel}"
                                             widgetVar="map" style="width:900px;height:300px"  
                                             onPointClick="handlePointClick(event);" >
-                                        <p:ajax event="overlaySelect" listener="#{cadPontosBB.onMarkerSelect}"/>
+                                        <p:ajax event="overlaySelect" listener="#{cadPontoBB.onMarkerSelect}"/>
                                         <p:gmapInfoWindow>  
                                             <p:outputPanel style="text-align:center;display:block;margin:auto:">  
 
-                                                <!--<p:graphicImage value="/images/antalya/#{cadPontosBB.marker.data}" height="150"/>  
+                                                <!--<p:graphicImage value="/images/antalya/#{cadPontoBB.marker.data}" height="150"/>  
                                                 <br />  -->
-                                                <h:outputText value="#{cadPontosBB.marker.title}" />  
+                                                <h:outputText value="#{cadPontoBB.marker.title}" />  
 
                                             </p:outputPanel>  
 
@@ -76,7 +76,7 @@
                         <p:panel>
                             <!--Tabela de Pontos-->
                             <h:form id="resultPoints" >
-                                <p:dataTable id="dtPonto" var="ponto" value="#{cadPontosBB.listaPontos}"  
+                                <p:dataTable id="dtPonto" var="ponto" value="#{cadPontoBB.listaPontos}"  
                                              paginator="true" rows="5"  
                                              paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
                                     <f:facet name="header">  
@@ -146,17 +146,17 @@
                                                 <h:panelGrid columns="2" columnClasses="label, value" styleClass="grid">  
                                                     <h:outputText value="Nome do Guia:" />  
                                                     <p:inputText required="true" label="Nome do Guia"  
-                                                                 value="#{cadPontosBB.guiaAtual.nomeGuia}" >
+                                                                 value="#{cadPontoBB.guiaAtual.nomeGuia}" >
                                                         <f:validateLength maximum="20" minimum="3" />
                                                     </p:inputText>  
                                                     <h:outputText value="Pais:" />  
                                                     <p:inputText required="true" label="Pais"  
-                                                                 value="#{cadPontosBB.guiaAtual.pais}" >
+                                                                 value="#{cadPontoBB.guiaAtual.pais}" >
                                                         <f:validateLength maximum="20" minimum="3" />
                                                     </p:inputText>  
                                                     <h:outputText value="Estado: " />  
                                                     <p:inputText required="true" label="Estado"
-                                                                 value="#{cadPontosBB.guiaAtual.estado}" >
+                                                                 value="#{cadPontoBB.guiaAtual.estado}" >
                                                         <!--<f:validateLength maximum="20" minimum="2" />-->
                                                     </p:inputText>                                                      
                                                 </h:panelGrid> 
@@ -167,11 +167,11 @@
                                             <p:panel header="Informações do guia">                                                   
                                                 <h:panelGrid columns="2" columnClasses="label, value">  
                                                     <h:outputText value="Info geral" />  
-                                                    <p:inputText value="#{cadPontosBB.guiaAtual.infoGuia}" />  
+                                                    <p:inputText value="#{cadPontoBB.guiaAtual.infoGuia}" />  
                                                     <h:outputText value="Comentário: " />  
-                                                    <p:inputText value="#{cadPontosBB.guiaAtual.comentarioGuia}" />
+                                                    <p:inputText value="#{cadPontoBB.guiaAtual.comentarioGuia}" />
                                                     <h:outputText value="URL: " />
-                                                    <p:inputText label="URL" value="#{cadPontosBB.guiaAtual.urlPonto}" />                                                    
+                                                    <p:inputText label="URL" value="#{cadPontoBB.guiaAtual.urlPonto}" />                                                    
                                                 </h:panelGrid>  
                                                 <h:messages errorClass="error"/> 
                                             </p:panel>
@@ -180,10 +180,10 @@
                                             <p:panel header="Informações do guia">                                                   
                                                 <h:panelGrid columns="1" columnClasses="label, value">  
                                                     <p:commandButton value="Foto_1" >
-                                                        <p:inputText value="#{cadPontosBB.guiaAtual.foto1}" style="width: 120px;" />
+                                                        <p:inputText value="#{cadPontoBB.guiaAtual.foto1}" style="width: 120px;" />
                                                     </p:commandButton>
                                                     <p:commandButton value="Foto_2" >
-                                                        <p:inputText value="#{cadPontosBB.guiaAtual.foto2}" style="width: 120px;" />
+                                                        <p:inputText value="#{cadPontoBB.guiaAtual.foto2}" style="width: 120px;" />
                                                     </p:commandButton>
                                                 </h:panelGrid>  
                                                 <h:messages errorClass="error"/> 
@@ -193,35 +193,35 @@
                                             <h:panelGrid id="confirmationGuia" columns="2">  
                                                 <h:outputText value="Nome: " />  
                                                 <h:outputText styleClass="outputLabel"  
-                                                              value="#{cadPontosBB.guiaAtual.nomeGuia}" />  
+                                                              value="#{cadPontoBB.guiaAtual.nomeGuia}" />  
 
                                                 <h:outputText value="Pais: " />  
                                                 <h:outputText  styleClass="outputLabel"  
-                                                               value="#{cadPontosBB.guiaAtual.pais}"/>  
+                                                               value="#{cadPontoBB.guiaAtual.pais}"/>  
 
                                                 <h:outputText value="Estado: " />  
                                                 <h:outputText styleClass="outputLabel"  
-                                                              value="#{cadPontosBB.guiaAtual.estado}" />
+                                                              value="#{cadPontoBB.guiaAtual.estado}" />
 
                                                 <h:outputText value="Info Geral: " />  
                                                 <h:outputText styleClass="outputLabel"  
-                                                              value="#{cadPontosBB.guiaAtual.infoGuia}" />  
+                                                              value="#{cadPontoBB.guiaAtual.infoGuia}" />  
 
                                                 <h:outputText value="Comentário: " />  
                                                 <h:outputText styleClass="outputLabel"  
-                                                              value="#{cadPontosBB.guiaAtual.comentarioGuia}" />  
+                                                              value="#{cadPontoBB.guiaAtual.comentarioGuia}" />  
 
                                                 <h:outputText value="Latitude: " />  
                                                 <h:outputText styleClass="outputLabel"  
-                                                              value="#{cadPontosBB.latitude}" />  
+                                                              value="#{cadPontoBB.latitude}" />  
 
                                                 <h:outputText value="Longitude: " />  
                                                 <h:outputText styleClass="outputLabel"  
-                                                              value="#{cadPontosBB.longitude}" />  
+                                                              value="#{cadPontoBB.longitude}" />  
                                             </h:panelGrid>  
 
                                             <p:commandButton value="Salvar" update="messagesGuia" onclick="teste.hide()"
-                                                             action="#{cadPontosBB.cadastrarGuia()}"/> 
+                                                             action="#{cadPontoBB.cadastrarGuia()}"/> 
                                             <p:commandButton value="Cancelar" onclick="return cancel()"/>  
 
                                         </p:tab>  
@@ -234,8 +234,8 @@
                         <!--Cadastro do Ponto Turistico-->
                         <p:confirmDialog widgetVar="dlgPonto" showEffect="fade" appendToBody="true">                              
                             <h:form prependId="false">  
-                                <h:inputHidden id="lat" value="#{cadPontosBB.latitude}" />  
-                                <h:inputHidden id="lng" value="#{cadPontosBB.longitude}" />
+                                <h:inputHidden id="lat" value="#{cadPontoBB.latitude}" />  
+                                <h:inputHidden id="lng" value="#{cadPontoBB.longitude}" />
                                 <p:growl id="messagesPonto" />
                                 <p:wizard widgetVar="wiz" showNavBar="true"  
                                           backLabel="Voltar" nextLabel="Avançar"> 
@@ -244,7 +244,7 @@
                                         <p:panel header="Tipo do Ponto">                                                   
                                             <h:messages errorClass="error"/>
                                             <h:panelGrid columns="2" columnClasses="label, value">  
-                                                <h:selectOneMenu value="#{cadPontosBB.tipoPonto}" id="tipoPontoEscolhido" required="true" requiredMessage="Tipo é campo Obrigatório" >                                                        
+                                                <h:selectOneMenu value="#{cadPontoBB.tipoPonto}" id="tipoPontoEscolhido" required="true" requiredMessage="Tipo é campo Obrigatório" >                                                        
                                                     <f:selectItem itemLabel="Selecione o tipo" noSelectionOption="true" />
                                                     <f:selectItem itemLabel="Estadia" itemValue="estadia" />
                                                     <f:selectItem itemLabel="Entreterimento" itemValue="entreterimento" />
@@ -257,93 +257,93 @@
                                             </h:panelGrid>
                                             <p:panel id="tipo">
                                                 <h:panelGroup id="estadia">
-                                                    <h:panelGroup rendered="#{cadPontosBB.tipoPonto eq 'estadia'}" >
+                                                    <h:panelGroup rendered="#{cadPontoBB.tipoPonto eq 'estadia'}" >
                                                         <h:panelGrid columns="2" >
                                                             <h:outputLabel value="Foto Estadia" />
                                                             <p:commandButton value="Foto" >
-                                                                <p:inputText value="#{cadPontosBB.estadia.fotoEstadia}" style="width: 120px;" />
+                                                                <p:inputText value="#{cadPontoBB.estadia.fotoEstadia}" style="width: 120px;" />
                                                             </p:commandButton>
 
                                                             <h:outputLabel value="Qualidade" />
-                                                            <p:inputText value="#{cadPontosBB.estadia.qualidade}" />
+                                                            <p:inputText value="#{cadPontoBB.estadia.qualidade}" />
 
                                                             <h:outputLabel value="Categoria" />
-                                                            <p:inputText value="#{cadPontosBB.estadia.categoria}" />
+                                                            <p:inputText value="#{cadPontoBB.estadia.categoria}" />
 
                                                         </h:panelGrid>
                                                     </h:panelGroup>
                                                 </h:panelGroup>
                                                 <h:panelGroup id="entreterimento" >
-                                                    <h:panelGroup rendered="#{cadPontosBB.tipoPonto eq 'entreterimento'}" >
+                                                    <h:panelGroup rendered="#{cadPontoBB.tipoPonto eq 'entreterimento'}" >
 
                                                         <h:panelGrid columns="2" >
                                                             <h:outputLabel value="Foto" />
                                                             <p:commandButton value="Foto" >
-                                                                <p:inputText value="#{cadPontosBB.entreterimento.fotoEntreterimento}" style="width: 120px;" />
+                                                                <p:inputText value="#{cadPontoBB.entreterimento.fotoEntreterimento}" style="width: 120px;" />
                                                             </p:commandButton>
 
                                                             <h:outputLabel value="Categoria" />
-                                                            <p:inputText value="#{cadPontosBB.entreterimento.categoria}" />
+                                                            <p:inputText value="#{cadPontoBB.entreterimento.categoria}" />
 
                                                             <h:outputLabel value="Atração" />
-                                                            <p:inputText value="#{cadPontosBB.entreterimento.atracao}" />
+                                                            <p:inputText value="#{cadPontoBB.entreterimento.atracao}" />
                                                         </h:panelGrid>
                                                         <hr />
                                                         <h:panelGrid columns="2">
                                                             <h:outputLabel value="Inicio" />
                                                             <h:outputLabel value="Fim" />
-                                                            <p:calendar value="#{cadPontosBB.entreterimento.periodoInicio}" id="dataInicio" />                                                                        
-                                                            <p:calendar value="#{cadPontosBB.entreterimento.periodoFim}" id="dataFim" />
+                                                            <p:calendar value="#{cadPontoBB.entreterimento.periodoInicio}" id="dataInicio" />                                                                        
+                                                            <p:calendar value="#{cadPontoBB.entreterimento.periodoFim}" id="dataFim" />
                                                             <p:dialog header="Selecione a data" widgetVar="dialog"   
                                                                       showEffect="fade" hideEffect="fade">                                                                    
                                                             </p:dialog>                                                            
                                                             <h:outputLabel value="Horario Inicio" />
                                                             <h:outputLabel value="Horario Fim" />
-                                                            <p:calendar value="#{cadPontosBB.entreterimento.horarioInicio}" pattern="HH:mm" timeOnly="true" />
-                                                            <p:calendar value="#{cadPontosBB.entreterimento.horarioFim}" pattern="HH:mm" timeOnly="true" />
+                                                            <p:calendar value="#{cadPontoBB.entreterimento.horarioInicio}" pattern="HH:mm" timeOnly="true" />
+                                                            <p:calendar value="#{cadPontoBB.entreterimento.horarioFim}" pattern="HH:mm" timeOnly="true" />
                                                         </h:panelGrid>
 
                                                     </h:panelGroup>
                                                 </h:panelGroup>
                                                 <h:panelGroup id="barRest">
-                                                    <h:panelGrid columns="2" rendered="#{cadPontosBB.tipoPonto eq 'barRest'}">
+                                                    <h:panelGrid columns="2" rendered="#{cadPontoBB.tipoPonto eq 'barRest'}">
                                                         <h:outputLabel value="Foto" />
                                                         <p:commandButton value="Foto" >
-                                                            <p:inputText value="#{cadPontosBB.bar.fotoBar}" style="width: 120px;" />
+                                                            <p:inputText value="#{cadPontoBB.bar.fotoBar}" style="width: 120px;" />
                                                         </p:commandButton>
                                                         <h:outputLabel value="Categoria" />
-                                                        <p:inputText value="#{cadPontosBB.bar.categoria}" />
+                                                        <p:inputText value="#{cadPontoBB.bar.categoria}" />
                                                         <h:outputLabel value="Custo Médio" />
-                                                        <p:inputText value="#{cadPontosBB.bar.custoMedio}" />
+                                                        <p:inputText value="#{cadPontoBB.bar.custoMedio}" />
                                                     </h:panelGrid>
                                                 </h:panelGroup>
                                                 <h:panelGroup id="transporte">
-                                                    <h:panelGroup rendered="#{cadPontosBB.tipoPonto eq 'transporte'}" >
+                                                    <h:panelGroup rendered="#{cadPontoBB.tipoPonto eq 'transporte'}" >
                                                         <h:panelGrid columns="2">
                                                             <h:outputLabel value="Foto" />
                                                             <p:commandButton value="Foto" >
-                                                                <p:inputText value="#{cadPontosBB.transporte.fotoTransporte}" style="width: 120px;" />
+                                                                <p:inputText value="#{cadPontoBB.transporte.fotoTransporte}" style="width: 120px;" />
                                                             </p:commandButton>
                                                             <h:outputLabel value="Categoria" />
-                                                            <p:inputText value="#{cadPontosBB.transporte.categoria}" />
+                                                            <p:inputText value="#{cadPontoBB.transporte.categoria}" />
                                                             <h:outputLabel value="Custo Médio" />
-                                                            <p:inputText value="#{cadPontosBB.transporte.custoMedio}" />
+                                                            <p:inputText value="#{cadPontoBB.transporte.custoMedio}" />
                                                             <h:outputLabel value="Categoria" />
-                                                            <p:inputText value="#{cadPontosBB.transporte.categoria}" />
+                                                            <p:inputText value="#{cadPontoBB.transporte.categoria}" />
                                                         </h:panelGrid>
                                                     </h:panelGroup>
                                                 </h:panelGroup>
                                                 <h:panelGroup id="esporte">
-                                                    <h:panelGroup rendered="#{cadPontosBB.tipoPonto eq 'esporte'}" >
+                                                    <h:panelGroup rendered="#{cadPontoBB.tipoPonto eq 'esporte'}" >
                                                         <h:panelGrid columns="2">
                                                             <h:outputLabel value="Foto" />
                                                             <p:commandButton value="Foto" >
-                                                                <p:inputText value="#{cadPontosBB.esporte.fotoEsporte}" style="width: 120px;" />
+                                                                <p:inputText value="#{cadPontoBB.esporte.fotoEsporte}" style="width: 120px;" />
                                                             </p:commandButton>
                                                             <h:outputLabel value="Categoria" />
-                                                            <p:inputText value="#{cadPontosBB.esporte.categoria}" />
+                                                            <p:inputText value="#{cadPontoBB.esporte.categoria}" />
                                                             <h:outputLabel value="Instrutor" />
-                                                            <p:inputText value="#{cadPontosBB.esporte.instrutor}" />
+                                                            <p:inputText value="#{cadPontoBB.esporte.instrutor}" />
                                                         </h:panelGrid>
                                                     </h:panelGroup>
                                                 </h:panelGroup>
@@ -355,11 +355,11 @@
                                             <h:panelGrid columns="2" columnClasses="label, value" styleClass="grid">  
                                                 <h:outputText value="Nome do Ponto:" />  
                                                 <p:inputText required="true" label="Nome do Ponto"  
-                                                             value="#{cadPontosBB.pontoDefault.nomePonto}" >
+                                                             value="#{cadPontoBB.pontoDefault.nomePonto}" >
                                                     <f:validateLength maximum="20" minimum="3" />
                                                 </p:inputText>
                                                 <h:outputText value="URL" />  
-                                                <p:inputText value="#{cadPontosBB.pontoDefault.urlPonto}" /> 
+                                                <p:inputText value="#{cadPontoBB.pontoDefault.urlPonto}" /> 
                                             </h:panelGrid> 
                                             <h:messages errorClass="error" style="font-size: 10px;"/> 
                                         </p:panel>  
@@ -368,9 +368,9 @@
                                         <p:panel header="Informações do Ponto">                                                   
                                             <h:panelGrid columns="2" columnClasses="label, value">  
                                                 <h:outputText value="Info geral" />  
-                                                <p:inputText value="#{cadPontosBB.pontoDefault.infoPonto}" />  
+                                                <p:inputText value="#{cadPontoBB.pontoDefault.infoPonto}" />  
                                                 <h:outputText value="Comentário: " />  
-                                                <p:inputText value="#{cadPontosBB.pontoDefault.comentarioPonto}" />                                                    
+                                                <p:inputText value="#{cadPontoBB.pontoDefault.comentarioPonto}" />                                                    
                                             </h:panelGrid>  
                                             <h:messages errorClass="error"/> 
                                         </p:panel>  
@@ -380,15 +380,15 @@
                                             <h:panelGrid columns="2" columnClasses="label, value">
                                                 <h:outputText value="Foto_1" />
                                                 <p:commandButton value="Foto_1" >
-                                                    <p:inputText value="#{cadPontosBB.pontoDefault.fotoPonto1}" style="width: 120px;" />
+                                                    <p:inputText value="#{cadPontoBB.pontoDefault.fotoPonto1}" style="width: 120px;" />
                                                 </p:commandButton>
                                                 <h:outputText value="Foto_2" />
                                                 <p:commandButton value="Foto_2" >
-                                                    <p:inputText value="#{cadPontosBB.pontoDefault.fotoPonto2}" style="width: 120px;" />
+                                                    <p:inputText value="#{cadPontoBB.pontoDefault.fotoPonto2}" style="width: 120px;" />
                                                 </p:commandButton>
                                                 <h:outputText value="Foto_3" />
                                                 <p:commandButton value="Foto_3" >
-                                                    <p:inputText value="#{cadPontosBB.pontoDefault.fotoPonto3}" style="width: 120px;" />
+                                                    <p:inputText value="#{cadPontoBB.pontoDefault.fotoPonto3}" style="width: 120px;" />
                                                 </p:commandButton>
                                             </h:panelGrid>
                                         </p:panel>
@@ -399,20 +399,20 @@
                                             <h:panelGrid id="confirmationPonto" columns="2">  
                                                 <h:outputText value="Nome: " />  
                                                 <h:outputText styleClass="outputLabel"  
-                                                              value="#{cadPontosBB.pontoDefault.nomePonto}" />                                                     
+                                                              value="#{cadPontoBB.pontoDefault.nomePonto}" />                                                     
 
                                                 <h:outputText value="Info Geral: " />  
                                                 <h:outputText styleClass="outputLabel"  
-                                                              value="#{cadPontosBB.pontoDefault.infoPonto}" />  
+                                                              value="#{cadPontoBB.pontoDefault.infoPonto}" />  
 
                                                 <h:outputText value="Comentário: " />  
                                                 <h:outputText styleClass="outputLabel"  
-                                                              value="#{cadPontosBB.pontoDefault.comentarioPonto}" />  
+                                                              value="#{cadPontoBB.pontoDefault.comentarioPonto}" />  
                                             </h:panelGrid>  
 
                                             <f:facet name="footer">  
                                                 <p:commandButton value="Cadastrar"   
-                                                                 actionListener="#{cadPontosBB.cadastraPonto}"   
+                                                                 actionListener="#{cadPontoBB.cadastraPonto}"   
                                                                  update="messagesPonto"   
                                                                  oncomplete="markerAddComplete()"/>  
                                                 <p:commandButton value="Cancelar" onclick="return cancel()"/>  

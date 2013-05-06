@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.myguaitour.entity;
+package br.com.myguiatour.entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -21,21 +21,21 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Carlos
  */
 @Entity
-@Table(name = "avaliaguia", catalog = "guiatourdb", schema = "")
+@Table(name = "avaliaponto", catalog = "guiatourdb", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Avaliaguia.findAll", query = "SELECT a FROM Avaliaguia a"),
-    @NamedQuery(name = "Avaliaguia.findByIdAvaliaGuia", query = "SELECT a FROM Avaliaguia a WHERE a.idAvaliaGuia = :idAvaliaGuia"),
-    @NamedQuery(name = "Avaliaguia.findByNota", query = "SELECT a FROM Avaliaguia a WHERE a.nota = :nota"),
-    @NamedQuery(name = "Avaliaguia.findByIdGuia", query = "SELECT a FROM Avaliaguia a WHERE a.idGuia = :idGuia"),
-    @NamedQuery(name = "Avaliaguia.findByIdUsuario", query = "SELECT a FROM Avaliaguia a WHERE a.idUsuario = :idUsuario")})
-public class Avaliaguia implements Serializable {
+    @NamedQuery(name = "Avaliaponto.findAll", query = "SELECT a FROM Avaliaponto a"),
+    @NamedQuery(name = "Avaliaponto.findByIdAvaliaPonto", query = "SELECT a FROM Avaliaponto a WHERE a.idAvaliaPonto = :idAvaliaPonto"),
+    @NamedQuery(name = "Avaliaponto.findByNota", query = "SELECT a FROM Avaliaponto a WHERE a.nota = :nota"),
+    @NamedQuery(name = "Avaliaponto.findByIdGuia", query = "SELECT a FROM Avaliaponto a WHERE a.idGuia = :idGuia"),
+    @NamedQuery(name = "Avaliaponto.findByIdUsuario", query = "SELECT a FROM Avaliaponto a WHERE a.idUsuario = :idUsuario")})
+public class Avaliaponto implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id_avalia_guia", nullable = false)
-    private Integer idAvaliaGuia;
+    @Column(name = "id_avalia_ponto", nullable = false)
+    private Integer idAvaliaPonto;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "nota", precision = 12)
     private Float nota;
@@ -44,19 +44,19 @@ public class Avaliaguia implements Serializable {
     @Column(name = "id_usuario")
     private Integer idUsuario;
 
-    public Avaliaguia() {
+    public Avaliaponto() {
     }
 
-    public Avaliaguia(Integer idAvaliaGuia) {
-        this.idAvaliaGuia = idAvaliaGuia;
+    public Avaliaponto(Integer idAvaliaPonto) {
+        this.idAvaliaPonto = idAvaliaPonto;
     }
 
-    public Integer getIdAvaliaGuia() {
-        return idAvaliaGuia;
+    public Integer getIdAvaliaPonto() {
+        return idAvaliaPonto;
     }
 
-    public void setIdAvaliaGuia(Integer idAvaliaGuia) {
-        this.idAvaliaGuia = idAvaliaGuia;
+    public void setIdAvaliaPonto(Integer idAvaliaPonto) {
+        this.idAvaliaPonto = idAvaliaPonto;
     }
 
     public Float getNota() {
@@ -86,18 +86,18 @@ public class Avaliaguia implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idAvaliaGuia != null ? idAvaliaGuia.hashCode() : 0);
+        hash += (idAvaliaPonto != null ? idAvaliaPonto.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Avaliaguia)) {
+        if (!(object instanceof Avaliaponto)) {
             return false;
         }
-        Avaliaguia other = (Avaliaguia) object;
-        if ((this.idAvaliaGuia == null && other.idAvaliaGuia != null) || (this.idAvaliaGuia != null && !this.idAvaliaGuia.equals(other.idAvaliaGuia))) {
+        Avaliaponto other = (Avaliaponto) object;
+        if ((this.idAvaliaPonto == null && other.idAvaliaPonto != null) || (this.idAvaliaPonto != null && !this.idAvaliaPonto.equals(other.idAvaliaPonto))) {
             return false;
         }
         return true;
@@ -105,7 +105,7 @@ public class Avaliaguia implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.myguaitour.entity.Avaliaguia[ idAvaliaGuia=" + idAvaliaGuia + " ]";
+        return "br.com.myguaitour.entity.Avaliaponto[ idAvaliaPonto=" + idAvaliaPonto + " ]";
     }
     
 }

@@ -8,6 +8,7 @@
       xmlns:c="http://java.sun.com/jsp/jstl/core">
     <h:head>
         <title>GuiaTour - O seu guia na internet</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet library="css" name="guiatourCss.css" />
     </h:head>
     <h:body>
@@ -16,7 +17,7 @@
                 <h:panelGrid columns="4">
                     <div id="panelLeft">
                         <p:graphicImage library="imagens" name="Icone_Brasil.jpg" width="80px"/>
-                        <p:inputText value="Pesquisar" id="pesqTop" title="Pesquisar Guia" />
+                        <p:inputText value="Pesquisar" id="pesqTop" title="" />
                         <p:commandLink >
                             <h:graphicImage library="imagens" name="iconSearch.jpg" />
                         </p:commandLink>
@@ -46,11 +47,11 @@
                         <p:menuitem value="Cadastrar" url="/restrict/CadPontos.jsf" icon="ui-icon-document"/>
                     </p:submenu>
                     <p:menuitem value="|" />
-                    <p:menuitem value="Download" url="#" icon="ui-icon-arrowthickstop-1-s"/>
+                    <p:menuitem value="Download" url="/public/Downloads.jsf" icon="ui-icon-arrowthickstop-1-s"/>
                     <p:menuitem value="|" />
-                    <p:menuitem value="Sobre" url="#" icon="ui-icon-info"/>
+                    <p:menuitem value="Sobre" url="/public/Sobre.jsf" icon="ui-icon-info"/>
                     <p:menuitem value="|" />
-                    <p:menuitem value="Contato" url="#" icon="ui-icon-contact"/>
+                    <p:menuitem value="Contato" url="/public/Contato.jsf" icon="ui-icon-contact"/>
                     <p:menuitem value="|" />
                     <p:menuitem value="Logar" url="#" icon="ui-icon-check"/>
                 </p:menubar>

@@ -1,4 +1,4 @@
-package br.com.guiatour.util;
+package br.com.myguiatour.util;
 
 import javax.faces.event.PhaseEvent;
 import javax.faces.event.PhaseId;

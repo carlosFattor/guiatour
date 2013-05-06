@@ -1,5 +1,6 @@
-package br.com.guiatour.dao;
+package br.com.myguiatour.dao;
 
+import br.com.myguiatour.entity.Guia;
 import java.io.Serializable;
 import java.util.List;
 import org.hibernate.criterion.DetachedCriteria;
@@ -18,5 +19,6 @@ public interface InterfaceDAO<T> {
     T getEntityByDeatchedCriteria(DetachedCriteria criteria);
     List<T> getEntitys();
     List<T> getListByDetachedCriteria(DetachedCriteria criteria);
+    List<T> getEntitys(String nomePesq, String namedQuery, String atributo);
     
 }

@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"> 
+
+    <ui:composition template="/WEB-INF/templates/managed_template.xhtml">
+        <ui:define name="conteudo">
+            <p:panel>
+                <h:panelGroup>
+                    
+                </h:panelGroup>
+                <h:form>
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                    <h:panelGrid columns="3" id="formCadUsuario">
+                        <h:outputText value="nome: *" />  
+                        <p:inputText id="nomeUser" required="true" />  
+                        <p:message id="defaultMessage" for="nomeUser" display="icon" />  
+                    </h:panelGrid>
+                </h:form>
+            </p:panel>
+        </ui:define>
+    </ui:composition>
+</html>
+

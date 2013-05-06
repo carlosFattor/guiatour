@@ -1,4 +1,4 @@
-package br.com.guiatour.util;
+package br.com.myguiatour.util;
 
 import javax.faces.context.FacesContext;
 import org.hibernate.Session;

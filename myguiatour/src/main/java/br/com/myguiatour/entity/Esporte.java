@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.myguaitour.entity;
+package br.com.myguiatour.entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -22,55 +22,59 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Carlos
  */
 @Entity
-@Table(name = "transporte", catalog = "guiatourdb", schema = "")
+@Table(name = "esporte", catalog = "guiatourdb", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Transporte.findAll", query = "SELECT t FROM Transporte t"),
-    @NamedQuery(name = "Transporte.findByIdTransporte", query = "SELECT t FROM Transporte t WHERE t.idTransporte = :idTransporte"),
-    @NamedQuery(name = "Transporte.findByFotoTransporte", query = "SELECT t FROM Transporte t WHERE t.fotoTransporte = :fotoTransporte"),
-    @NamedQuery(name = "Transporte.findByCategoria", query = "SELECT t FROM Transporte t WHERE t.categoria = :categoria"),
-    @NamedQuery(name = "Transporte.findByCustoMedio", query = "SELECT t FROM Transporte t WHERE t.custoMedio = :custoMedio"),
-    @NamedQuery(name = "Transporte.findByIdPonto", query = "SELECT t FROM Transporte t WHERE t.idPonto = :idPonto")})
-public class Transporte implements Serializable {
+    @NamedQuery(name = "Esporte.findAll", query = "SELECT e FROM Esporte e"),
+    @NamedQuery(name = "Esporte.findByIdEsporte", query = "SELECT e FROM Esporte e WHERE e.idEsporte = :idEsporte"),
+    @NamedQuery(name = "Esporte.findByFotoEsporte", query = "SELECT e FROM Esporte e WHERE e.fotoEsporte = :fotoEsporte"),
+    @NamedQuery(name = "Esporte.findByCategoria", query = "SELECT e FROM Esporte e WHERE e.categoria = :categoria"),
+    @NamedQuery(name = "Esporte.findByInstrutor", query = "SELECT e FROM Esporte e WHERE e.instrutor = :instrutor"),
+    @NamedQuery(name = "Esporte.findByCustoMedio", query = "SELECT e FROM Esporte e WHERE e.custoMedio = :custoMedio"),
+    @NamedQuery(name = "Esporte.findByIdPonto", query = "SELECT e FROM Esporte e WHERE e.idPonto = :idPonto")})
+public class Esporte implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id_transporte")
-    private Integer idTransporte;
+    @Column(name = "id_esporte")
+    private Integer idEsporte;
     @Size(max = 20)
-    @Column(name = "foto_transporte")
-    private String fotoTransporte;
+    @Column(name = "foto_esporte")
+    private String fotoEsporte;
     @Size(max = 100)
     @Column(name = "categoria")
     private String categoria;
+    @Size(max = 100)
+    @Column(name = "instrutor")
+    private String instrutor;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "custo_medio")
     private Float custoMedio;
     @Column(name = "id_ponto")
     private Integer idPonto;
 
-    public Transporte() {
+    public Esporte() {
     }
 
-    public Transporte(Integer idTransporte) {
-        this.idTransporte = idTransporte;
+    public Esporte(Integer idEsporte) {
+        this.idEsporte = idEsporte;
     }
 
-    public Integer getIdTransporte() {
-        return idTransporte;
+    public Integer getIdEsporte() {
+        return idEsporte;
     }
 
-    public void setIdTransporte(Integer idTransporte) {
-        this.idTransporte = idTransporte;
+    public void setIdEsporte(Integer idEsporte) {
+        this.idEsporte = idEsporte;
     }
 
-    public String getFotoTransporte() {
-        return fotoTransporte;
+    public String getFotoEsporte() {
+        return fotoEsporte;
     }
 
-    public void setFotoTransporte(String fotoTransporte) {
-        this.fotoTransporte = fotoTransporte;
+    public void setFotoEsporte(String fotoEsporte) {
+        this.fotoEsporte = fotoEsporte;
     }
 
     public String getCategoria() {
@@ -79,6 +83,14 @@ public class Transporte implements Serializable {
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
+    }
+
+    public String getInstrutor() {
+        return instrutor;
+    }
+
+    public void setInstrutor(String instrutor) {
+        this.instrutor = instrutor;
     }
 
     public Float getCustoMedio() {
@@ -100,18 +112,18 @@ public class Transporte implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idTransporte != null ? idTransporte.hashCode() : 0);
+        hash += (idEsporte != null ? idEsporte.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Transporte)) {
+        if (!(object instanceof Esporte)) {
             return false;
         }
-        Transporte other = (Transporte) object;
-        if ((this.idTransporte == null && other.idTransporte != null) || (this.idTransporte != null && !this.idTransporte.equals(other.idTransporte))) {
+        Esporte other = (Esporte) object;
+        if ((this.idEsporte == null && other.idEsporte != null) || (this.idEsporte != null && !this.idEsporte.equals(other.idEsporte))) {
             return false;
         }
         return true;
@@ -119,7 +131,7 @@ public class Transporte implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.myguaitour.entity.Transporte[ idTransporte=" + idTransporte + " ]";
+        return "br.com.myguaitour.entity.Esporte[ idEsporte=" + idEsporte + " ]";
     }
     
 }

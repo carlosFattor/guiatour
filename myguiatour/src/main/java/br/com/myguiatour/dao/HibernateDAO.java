@@ -1,7 +1,8 @@
 
-package br.com.guiatour.dao;
+package br.com.myguiatour.dao;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
@@ -78,4 +79,11 @@ public class HibernateDAO<T> implements InterfaceDAO<T>, Serializable{
     public List<T> getListByDetachedCriteria(DetachedCriteria criteria) {
         return criteria.getExecutableCriteria(session).list();
     }    
+
+    @Override
+        public List<T> getEntitys(String nomePesq, String namedQuery, String atributo) {
+        List<T> entitys = new ArrayList<T>();
+        entitys = (List<T>)session.getNamedQuery(namedQuery).setString(atributo, nomePesq);
+        return entitys;        
+    }
 }

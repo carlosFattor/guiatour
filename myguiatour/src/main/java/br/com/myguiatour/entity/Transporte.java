@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.myguaitour.entity;
+package br.com.myguiatour.entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -22,25 +22,25 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Carlos
  */
 @Entity
-@Table(name = "barerest", catalog = "guiatourdb", schema = "")
+@Table(name = "transporte", catalog = "guiatourdb", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Barerest.findAll", query = "SELECT b FROM Barerest b"),
-    @NamedQuery(name = "Barerest.findByIdBarRest", query = "SELECT b FROM Barerest b WHERE b.idBarRest = :idBarRest"),
-    @NamedQuery(name = "Barerest.findByFotoBar", query = "SELECT b FROM Barerest b WHERE b.fotoBar = :fotoBar"),
-    @NamedQuery(name = "Barerest.findByCategoria", query = "SELECT b FROM Barerest b WHERE b.categoria = :categoria"),
-    @NamedQuery(name = "Barerest.findByCustoMedio", query = "SELECT b FROM Barerest b WHERE b.custoMedio = :custoMedio"),
-    @NamedQuery(name = "Barerest.findByIdPonto", query = "SELECT b FROM Barerest b WHERE b.idPonto = :idPonto")})
-public class Barerest implements Serializable {
+    @NamedQuery(name = "Transporte.findAll", query = "SELECT t FROM Transporte t"),
+    @NamedQuery(name = "Transporte.findByIdTransporte", query = "SELECT t FROM Transporte t WHERE t.idTransporte = :idTransporte"),
+    @NamedQuery(name = "Transporte.findByFotoTransporte", query = "SELECT t FROM Transporte t WHERE t.fotoTransporte = :fotoTransporte"),
+    @NamedQuery(name = "Transporte.findByCategoria", query = "SELECT t FROM Transporte t WHERE t.categoria = :categoria"),
+    @NamedQuery(name = "Transporte.findByCustoMedio", query = "SELECT t FROM Transporte t WHERE t.custoMedio = :custoMedio"),
+    @NamedQuery(name = "Transporte.findByIdPonto", query = "SELECT t FROM Transporte t WHERE t.idPonto = :idPonto")})
+public class Transporte implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id_bar_rest")
-    private Integer idBarRest;
+    @Column(name = "id_transporte")
+    private Integer idTransporte;
     @Size(max = 20)
-    @Column(name = "foto_bar")
-    private String fotoBar;
+    @Column(name = "foto_transporte")
+    private String fotoTransporte;
     @Size(max = 100)
     @Column(name = "categoria")
     private String categoria;
@@ -50,27 +50,27 @@ public class Barerest implements Serializable {
     @Column(name = "id_ponto")
     private Integer idPonto;
 
-    public Barerest() {
+    public Transporte() {
     }
 
-    public Barerest(Integer idBarRest) {
-        this.idBarRest = idBarRest;
+    public Transporte(Integer idTransporte) {
+        this.idTransporte = idTransporte;
     }
 
-    public Integer getIdBarRest() {
-        return idBarRest;
+    public Integer getIdTransporte() {
+        return idTransporte;
     }
 
-    public void setIdBarRest(Integer idBarRest) {
-        this.idBarRest = idBarRest;
+    public void setIdTransporte(Integer idTransporte) {
+        this.idTransporte = idTransporte;
     }
 
-    public String getFotoBar() {
-        return fotoBar;
+    public String getFotoTransporte() {
+        return fotoTransporte;
     }
 
-    public void setFotoBar(String fotoBar) {
-        this.fotoBar = fotoBar;
+    public void setFotoTransporte(String fotoTransporte) {
+        this.fotoTransporte = fotoTransporte;
     }
 
     public String getCategoria() {
@@ -100,18 +100,18 @@ public class Barerest implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idBarRest != null ? idBarRest.hashCode() : 0);
+        hash += (idTransporte != null ? idTransporte.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Barerest)) {
+        if (!(object instanceof Transporte)) {
             return false;
         }
-        Barerest other = (Barerest) object;
-        if ((this.idBarRest == null && other.idBarRest != null) || (this.idBarRest != null && !this.idBarRest.equals(other.idBarRest))) {
+        Transporte other = (Transporte) object;
+        if ((this.idTransporte == null && other.idTransporte != null) || (this.idTransporte != null && !this.idTransporte.equals(other.idTransporte))) {
             return false;
         }
         return true;
@@ -119,7 +119,7 @@ public class Barerest implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.myguaitour.entity.Barerest[ idBarRest=" + idBarRest + " ]";
+        return "br.com.myguaitour.entity.Transporte[ idTransporte=" + idTransporte + " ]";
     }
     
 }
