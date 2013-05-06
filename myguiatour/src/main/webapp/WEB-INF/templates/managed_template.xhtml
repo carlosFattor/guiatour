@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <title>GuiaTour - O seu guia na internet</title>
+        <h:outputStylesheet library="css" name="guiatourCss.css" />
+    </h:head>
+    <h:body>
+        <header>
+            <h:form>
+                <h:panelGrid columns="4">
+                    <div id="panelLeft">
+                        <p:graphicImage library="imagens" name="Icone_Brasil.jpg" width="80px"/>
+                        <p:inputText value="Pesquisar" id="pesqTop" title="Pesquisar Guia" />
+                        <p:commandLink >
+                            <h:graphicImage library="imagens" name="iconSearch.jpg" />
+                        </p:commandLink>
+                        <p:tooltip for="pesqTop" showEvent="focus" hideEvent="blur" />
+                    </div>
+                </h:panelGrid> <div id="panelRight">
+                    <p:commandButton value="Contato" />
+                    <p:commandButton value="SiteMap" />
+                    <h:outputLink id="fade" value="#">  
+                        <p:graphicImage library="imagens" name="pt.jpg" id="iconBr" value="#"/>
+                    </h:outputLink>  
+                    <p:tooltip for="fade" value="Portugues pt-br" showEffect="fade" hideEffect="fade" />
+                </div>
+            </h:form>
+            <div id="headPicture">
+                <p:graphicImage library="imagens" name="h_rio_01.jpg"/>
+            </div>
+        </header>
+        <nav>
+            <h:form>
+                <p:menubar>
+                    <p:menuitem value="Inicio" url="/index.jsf" icon="ui-icon-home"/>                        
+                    <p:menuitem value="|" />
+                    <p:submenu label="Guia" icon="ui-icon-search">
+                        <p:menuitem value="Vizualizar" url="/public/ViewPonto.jsf" icon="ui-icon-search"/>
+                        <p:separator />
+                        <p:menuitem value="Cadastrar" url="/restrict/CadPontos.jsf" icon="ui-icon-document"/>
+                    </p:submenu>
+                    <p:menuitem value="|" />
+                    <p:menuitem value="Download" url="#" icon="ui-icon-arrowthickstop-1-s"/>
+                    <p:menuitem value="|" />
+                    <p:menuitem value="Sobre" url="#" icon="ui-icon-info"/>
+                    <p:menuitem value="|" />
+                    <p:menuitem value="Contato" url="#" icon="ui-icon-contact"/>
+                    <p:menuitem value="|" />
+                    <p:menuitem value="Logar" url="#" icon="ui-icon-check"/>
+                </p:menubar>
+            </h:form>
+        </nav>
+        <section>
+            <ui:insert name="conteudo">
+                <!--Inicio troca de conteudo-->
+                <p:layout style="min-width:400px;min-height:485px;" id="layout">
+                    <p:layoutUnit position="center">
+                        <p:carousel value="#{carrossel.fotos}" var="fotos" style="width: 600px; height: 255px;"
+                                    pageLinks="4" autoPlayInterval="1000" vertical="true"
+                                    numVisible="1" effect="easeInStrong" circular="true" >
+                            <h:graphicImage value="resources/carrossel/#{fotos.nome}" style="width: 600px; height: 210px;border-style: none;">
+                                <h:outputText id="slide" value="#{fotos.description}" style="position: absolute; margin-top: 170px; margin-left: 10px;" />
+                            </h:graphicImage>                        
+                        </p:carousel>
+                    </p:layoutUnit>
+                    <p:layoutUnit position="east" size="250" >  
+                        Comentário dos usuários
+                    </p:layoutUnit>  
+                    <p:layoutUnit position="south" size="200" >
+                        <h:panelGrid columns="2">
+                            <p:panelGrid columns="2" >
+                                <p:graphicImage library="imagens" name="icone_facebook.png" />
+                                <p:outputLabel value="FaceBook"/>
+                            </p:panelGrid>
+
+                            <p:panelGrid columns="2">
+                                <p:graphicImage library="imagens" name="icone-twitter.jpg" />
+                                <p:outputLabel value="Twitter"/>
+                            </p:panelGrid>                            
+
+                        </h:panelGrid>
+                    </p:layoutUnit>
+                </p:layout>
+                <!--Fim troca de conteudo-->
+            </ui:insert>
+        </section>
+        <br />
+        <footer>            
+            <p:panelGrid columns="4">
+                <p:panel id="painel1" >
+                    <h:outputLabel value="Guia" />
+                    <hr />
+                    <a href="#" ><h:outputText value="Entreterimento"/></a>                    
+                </p:panel>
+                <p:panel id="painel2" >
+                    <h:outputLabel value="Downloads" />
+                    <hr />
+                    <a href="#" ><h:outputText value="Aplicativos"/></a>
+                </p:panel>
+                <p:panel id="painel3" >
+                    <h:outputLabel value="Sobre" />
+                    <hr />
+                    <a href="#" ><h:outputText value="Quem somos"/></a>
+                </p:panel>
+                <p:panel id="painel4">
+                    <h:outputLabel value="Contato" />
+                    <hr />
+                    <a href="#" ><h:outputText value="Fale Conosco"/></a>
+                </p:panel>
+            </p:panelGrid>
+            <br />
+            <p:clock />
+        </footer>
+    </h:body>
+</html>
+

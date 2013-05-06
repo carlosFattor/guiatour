@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0   
+    Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<ui:composition xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">  
+
+    <!-- your page -->  
+
+    <h:form>
+        <h:panelGrid columns="4">
+            <div id="panelLeft" style="margin-left: -100px;">
+                <p:graphicImage library="imagens" name="Icone_Brasil.jpg" width="80px"/>
+                <p:inputText value="Pesquisar" id="pesqTop" title="Pesquisar Guia" />
+                <p:commandLink >
+                    <h:graphicImage library="imagens" name="iconSearch.jpg" />
+                </p:commandLink>
+                <p:tooltip for="pesqTop" showEvent="focus" hideEvent="blur" />
+            </div>
+        </h:panelGrid> 
+        <div id="panelRight">
+            <p:commandButton value="Contato" />
+            <p:commandButton value="SiteMap" />
+            <h:outputLink id="fade" value="#">  
+                <p:graphicImage library="imagens" name="pt.jpg" id="iconBr" value="#"/>
+            </h:outputLink>  
+            <p:tooltip for="fade" value="Portugues pt-br" showEffect="fade" hideEffect="fade" />
+        </div>
+    </h:form>
+    <div id="headPicture">
+        <p:graphicImage library="imagens" name="h_rio_01.jpg"/>
+    </div>
+
+    <nav>
+        <h:form>
+            <p:menubar>
+                <p:menuitem value="Inicio" url="/index.jsf" icon="ui-icon-home"/>                        
+                <p:menuitem value="|" />
+                <p:submenu label="Guia" icon="ui-icon-search">
+                    <p:menuitem value="Vizualizar" action="visualizar" icon="ui-icon-search"/>
+                    <p:separator />
+                    <p:menuitem value="Cadastrar" action="CadPonto" ajax="false" icon="ui-icon-document"/>
+                </p:submenu>
+                <p:menuitem value="|" />
+                <p:menuitem value="Download" url="#" icon="ui-icon-arrowthickstop-1-s"/>
+                <p:menuitem value="|" />
+                <p:menuitem value="Sobre" url="#" icon="ui-icon-info"/>
+                <p:menuitem value="|" />
+                <p:menuitem value="Contato" url="#" icon="ui-icon-contact"/>
+                <p:menuitem value="|" />
+                <p:menuitem value="Logar" url="#" icon="ui-icon-check"/>
+            </p:menubar>
+        </h:form>
+    </nav>
+
+</ui:composition>  

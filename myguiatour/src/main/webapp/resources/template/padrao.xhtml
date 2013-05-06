@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+ 
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>GuiaTour - O seu guia na internet</title>
+        <h:outputStylesheet library="css" name="guiatourCss.css" />
+    </h:head>
+    <h:body>
+        <div align="center">
+            <p:layout style="max-width:1020px;min-height:1200px;max-height: 1500px;">  
+                <p:layoutUnit position="north" size="365">  
+                    <ui:insert name="menu">
+                        <ui:include src="./componente/menu.xhtml" />
+                    </ui:insert>
+                </p:layoutUnit>  
+                
+                <p:layoutUnit position="center">  
+                    <ui:insert name="centro">
+                        <ui:include src="./componente/default.xhtml" />
+                    </ui:insert>
+                </p:layoutUnit> 
+                
+                <p:layoutUnit position="south" size="170">
+                    <ui:insert name="footer">
+                        <ui:include src="./componente/footer.xhtml" />
+                    </ui:insert>
+                </p:layoutUnit>
+            </p:layout>  
+        </div>
+    </h:body>
+</html>

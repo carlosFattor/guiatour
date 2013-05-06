@@ -1,0 +1,90 @@
+/* 
+    Document   : guiatourCss
+    Created on : 09/04/2013, 21:13:45
+    Author     : Carlos
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+#panelLeft{
+    text-align: left;
+}
+
+#panelRight{
+    text-align: right;
+    margin-top: -50px;
+    font-size: 11px;
+}
+
+header{
+    width: 940px;
+    height: 380px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#headPicture{
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+nav{    
+    width: 940px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+section{
+    width: 940px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+footer{
+    margin-top: auto;
+    width: 940px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#painel1{
+    width: 205px;
+}
+
+#painel2{
+    width: 205px;
+}
+
+#painel3{
+    width: 205px;
+}
+
+#painel4{
+    width: 205px;
+}
+
+article{
+    width: 500px;
+}
+article span {
+    width: 200px;
+}
+
+#material{
+    width: 940px;
+}
+
+#carrossel{
+    width: 600px;
+    float: right;
+}
+
+#comentarios{
+    width: 300px;
+}

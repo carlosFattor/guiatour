@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0   
+    Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<ui:composition xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">  
+
+    <!-- your page -->  
+    <footer>            
+        <p:panelGrid columns="4">
+            <p:panel id="painel1" >
+                <h:outputLabel value="Guia" />
+                <hr />
+                <a href="#" ><h:outputText value="Entreterimento"/></a>                    
+            </p:panel>
+            <p:panel id="painel2" >
+                <h:outputLabel value="Downloads" />
+                <hr />
+                <a href="#" ><h:outputText value="Aplicativos"/></a>
+            </p:panel>
+            <p:panel id="painel3" >
+                <h:outputLabel value="Sobre" />
+                <hr />
+                <a href="#" ><h:outputText value="Quem somos"/></a>
+            </p:panel>
+            <p:panel id="painel4">
+                <h:outputLabel value="Contato" />
+                <hr />
+                <a href="#" ><h:outputText value="Fale Conosco"/></a>
+            </p:panel>
+        </p:panelGrid>
+        <br />
+        <p:clock />
+    </footer>
+</ui:composition>  

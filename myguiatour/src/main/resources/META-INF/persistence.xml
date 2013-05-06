@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+  <persistence-unit name="myguiatourPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <class>br.com.myguaitour.entity.Download</class>
+    <class>br.com.myguaitour.entity.Guia</class>
+    <class>br.com.myguaitour.entity.Avaliaponto</class>
+    <class>br.com.myguaitour.entity.Pontoturistico</class>
+    <class>br.com.myguaitour.entity.Avaliaguia</class>
+    <class>br.com.myguaitour.entity.Excluir</class>
+    <class>br.com.myguaitour.entity.Usuario</class>
+    <class>br.com.myguaitour.entity.Comentario</class>
+    <class>br.com.myguaitour.entity.Cadguia</class>
+    <class>br.com.myguaitour.entity.Barerest</class>
+    <class>br.com.myguaitour.entity.Entreterimento</class>
+    <class>br.com.myguaitour.entity.Esporte</class>
+    <class>br.com.myguaitour.entity.Transporte</class>
+    <class>br.com.myguaitour.entity.Estadia</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/guiatourdb"/>
+      <property name="javax.persistence.jdbc.password" value="C$rl0s01"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
+    </properties>
+  </persistence-unit>
+</persistence>

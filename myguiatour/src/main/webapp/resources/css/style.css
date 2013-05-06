@@ -1,0 +1,28 @@
+/* 
+    Document   : style
+    Created on : 09/04/2013, 21:14:59
+    Author     : Carlos
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+/** chorme and safari **/
+::-webkit-input-placeholder {
+	color: blue !important;
+	font-weight: normal !important;
+}
+ 
+/** firefox **/
+:-moz-placeholder {
+	color: blue !important;
+	font-weight: normal !important;
+}
+ 
+/** IE **/
+.ui-watermark {
+	color: blue !important;
+	font-weight: normal !important;
+}
