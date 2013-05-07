@@ -28,7 +28,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Avaliaguia.findByIdAvaliaGuia", query = "SELECT a FROM Avaliaguia a WHERE a.idAvaliaGuia = :idAvaliaGuia"),
     @NamedQuery(name = "Avaliaguia.findByNota", query = "SELECT a FROM Avaliaguia a WHERE a.nota = :nota"),
     @NamedQuery(name = "Avaliaguia.findByIdGuia", query = "SELECT a FROM Avaliaguia a WHERE a.idGuia = :idGuia"),
-    @NamedQuery(name = "Avaliaguia.findByIdUsuario", query = "SELECT a FROM Avaliaguia a WHERE a.idUsuario = :idUsuario")})
+    @NamedQuery(name = "Avaliaguia.findByIdUsuario", query = "SELECT a FROM Avaliaguia a WHERE a.idUsuario = :idUsuario"),
+    @NamedQuery(name = "Avaliaguia.findByIdUsuarioIdGuia", query = "SELECT a FROM Avaliaguia a WHERE a.idUsuario = :idUsuario and a.idGuia = :idGuia")})
 public class Avaliaguia implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

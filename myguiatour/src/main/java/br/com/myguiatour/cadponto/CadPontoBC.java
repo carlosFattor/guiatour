@@ -4,11 +4,13 @@
  */
 package br.com.myguiatour.cadponto;
 
+import br.com.myguiatour.avaliacoes.AvaliacoesBC;
 import br.com.myguiatour.dao.HibernateDAO;
 import br.com.myguiatour.dao.InterfaceDAO;
 import br.com.myguiatour.entity.Guia;
 import br.com.myguiatour.entity.Pontoturistico;
 import br.com.myguiatour.util.FacesContextUtil;
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedProperty;
@@ -33,6 +35,8 @@ public class CadPontoBC {
     private MapModel simpleModel;
     private String centerCity;
     private MapModel advancedModel;
+    @ManagedProperty(value = "#{avaliacoesBC}")
+    private AvaliacoesBC avaliacoesBC;
 
     private InterfaceDAO<Guia> guiaDAO() {
         InterfaceDAO<Guia> guiaDAO = new HibernateDAO<Guia>(Guia.class, FacesContextUtil.getRequestSession());
@@ -46,8 +50,9 @@ public class CadPontoBC {
 
     public boolean pesqGuia(String nomePesq) {
         listaGuias = guiaDAO().getEntitys(nomePesq, "Guia.findByNomeGuia", "nomeGuia");
-        this.setClassificacaoGuia();
+
         if (listaGuias.size() > 0) {
+            this.setClassificacaoGuia();
             this.findPoint();
             if (listaGuias.size() <= 1) {
                 guiaAtual = listaGuias.get(0);
@@ -61,8 +66,13 @@ public class CadPontoBC {
     }
 
     private void findPoint() {
+        pontoTur = new ArrayList<Pontoturistico>();
         for (Guia guia : listaGuias) {
-            pontoTur = (List<Pontoturistico>) pontoDAO().getEntity(guia.getIdGuia());
+            List<Pontoturistico> pontoEnc = new ArrayList<Pontoturistico>();
+            pontoEnc = (List<Pontoturistico>) pontoDAO().getEntitysId(guia.getIdGuia(), "Pontoturistico.findByIdGuia", "idGuia");
+            for (Pontoturistico ponto : pontoEnc) {
+                pontoTur.add(ponto);
+            }
         }
     }
 
@@ -97,24 +107,26 @@ public class CadPontoBC {
     private MapModel findMarkersPonto() {
         advancedModel = new DefaultMapModel();
         int i = 0;
-        for (Pontoturistico ponto : pontoTur) {
-            String coord[] = ponto.getLatlngPonto().split(",");
+        if (pontoTur != null && pontoTur.size() > 0) {
+            for (Pontoturistico ponto : pontoTur) {
+                String coord[] = ponto.getLatlngPonto().split(",");
 
-            LatLng latlng = new LatLng(Double.parseDouble(coord[0]), Double.parseDouble(coord[1]));
+                LatLng latlng = new LatLng(Double.parseDouble(coord[0]), Double.parseDouble(coord[1]));
 
-            Integer rating = Integer.parseInt(ponto.getClassificacao().toString());
-            pontoTur.get(i).setClassificacao(rating);
+                Integer rating = Integer.parseInt(ponto.getClassificacao().toString());
+                pontoTur.get(i).setClassificacao(rating);
 
-            advancedModel.addOverlay(new Marker(latlng, ponto.getNomePonto(), ponto));
+                advancedModel.addOverlay(new Marker(latlng, ponto.getNomePonto(), ponto));
 
+            }
         }
         return advancedModel;
-    }    
+    }
 
     void cadGuia(Guia guiaAtual) {
-        
+
         try {
-            guiaDAO().save(guiaAtual);            
+            guiaDAO().save(guiaAtual);
             CadPontoBB.msg = new FacesMessage("Sucesso", guiaAtual.getNomeGuia() + " Cadastrada");
         } catch (Exception e) {
             CadPontoBB.msg = new FacesMessage("Erro", guiaAtual.getNomeGuia() + " não cadastrada");
@@ -143,9 +155,10 @@ public class CadPontoBC {
 
         this.centerCity = lat[1].toString() + "," + lng[1].toString();
     }
-    
+
     private void setClassificacaoGuia() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        avaliacoesBC = new AvaliacoesBC();
+        listaGuias = avaliacoesBC.setClassificacao(listaGuias);
     }
 
     public List<Pontoturistico> getPontoTur() {
@@ -203,6 +216,4 @@ public class CadPontoBC {
     public void setSimpleModel(MapModel simpleModel) {
         this.simpleModel = simpleModel;
     }
-
-    
 }

@@ -16,5 +16,7 @@ public interface InterfaceDAO<T> {
     boolean remove(T entity);
     boolean merge(T entity);
     T getEntity(Serializable id);      
-    List<T> getEntitys(String nomePesq, String namedQuery, String atributo);    
+    List<T> getEntitys(String nomePesq, String namedQuery, String atributo);
+    List<T> getEntitysId(Integer id, String namedQuery, String atributo);
+    List<T> getEntitysByIds(Integer IdUser, Integer IdGuia, String namedQuery, String atr1, String atr2);
 }

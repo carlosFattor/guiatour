@@ -48,7 +48,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Pontoturistico.findByLatlngPonto", query = "SELECT p FROM Pontoturistico p WHERE p.latlngPonto = :latlngPonto"),
     @NamedQuery(name = "Pontoturistico.findByIdGuia", query = "SELECT p FROM Pontoturistico p WHERE p.idGuia = :idGuia"),
     @NamedQuery(name = "Pontoturistico.findByIdUsuario", query = "SELECT p FROM Pontoturistico p WHERE p.idUsuario = :idUsuario")})
-public class Pontoturistico implements Serializable {
+public abstract class Pontoturistico implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,38 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
-    <persistence-unit name="myguiatourPU" transaction-type="RESOURCE_LOCAL">
-        <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <class>br.com.myguiatour.entity.Avaliaguia</class>
-        <class>br.com.myguiatour.entity.Avaliaponto</class>
-        <class>br.com.myguiatour.entity.Barerest</class>
-        <class>br.com.myguiatour.entity.Cadguia</class>
-        <class>br.com.myguiatour.entity.Comentario</class>
-        <class>br.com.myguiatour.entity.Download</class>
-        <class>br.com.myguiatour.entity.Entreterimento</class>
-        <class>br.com.myguiatour.entity.Esporte</class>
-        <class>br.com.myguiatour.entity.Estadia</class>
-        <class>br.com.myguiatour.entity.Excluir</class>
-        <class>br.com.myguiatour.entity.Guia</class>
-        <class>br.com.myguiatour.entity.Pontoturistico</class>
-        <class>br.com.myguiatour.entity.Transporte</class>
-        <class>br.com.myguiatour.entity.Usuario</class>
-        <exclude-unlisted-classes>false</exclude-unlisted-classes>
-        <properties>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/guiatourdb"/>
-            <property name="javax.persistence.jdbc.password" value="C$rl0s01"/>
-            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-            <property name="javax.persistence.jdbc.user" value="root"/>
-            <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
-            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
-            
-            <!-- CONFIGURAÇÕES DO POOL DE CONEXÕES-->
-        
-            <property name="c3p0.min_size" value="1" />
-            <property name="c3p0.max_size" value="20" />
-            <property name="c3p0.timeout" value="300" />
-            <property name="c3p0.max_statements" value="80" />
-            <property name="c3p0.idle_test_period" value="300" />
-        </properties>
-    </persistence-unit>
+  <persistence-unit name="myguiatourPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <class>br.com.myguiatour.entity.Avaliaguia</class>
+    <class>br.com.myguiatour.entity.Avaliaponto</class>
+    <class>br.com.myguiatour.entity.Barerest</class>
+    <class>br.com.myguiatour.entity.Cadguia</class>
+    <class>br.com.myguiatour.entity.Comentario</class>
+    <class>br.com.myguiatour.entity.Download</class>
+    <class>br.com.myguiatour.entity.Entreterimento</class>
+    <class>br.com.myguiatour.entity.Esporte</class>
+    <class>br.com.myguiatour.entity.Estadia</class>
+    <class>br.com.myguiatour.entity.Excluir</class>
+    <class>br.com.myguiatour.entity.Guia</class>
+    <class>br.com.myguiatour.entity.Pontoturistico</class>
+    <class>br.com.myguiatour.entity.Transporte</class>
+    <class>br.com.myguiatour.entity.Usuario</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/guiatourdb"/>
+      <property name="javax.persistence.jdbc.password" value="C$rl0s01"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
+      <!-- CONFIGURAÇÕES DO POOL DE CONEXÕES-->
+      <property name="c3p0.min_size" value="1"/>
+      <property name="c3p0.max_size" value="20"/>
+      <property name="c3p0.timeout" value="300"/>
+      <property name="c3p0.max_statements" value="80"/>
+      <property name="c3p0.idle_test_period" value="300"/>
+    </properties>
+  </persistence-unit>
 </persistence>

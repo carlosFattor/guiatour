@@ -82,12 +82,27 @@ public class HibernateDAO<T> implements InterfaceDAO<T>, Serializable{
     }
 
     @Override
-        public List<T> getEntitys(String nomePesq, String namedQuery, String atributo) {
+        public List<T> getEntitys(String nomePesq, String namedQuery, String atr) {
         Query q = this.em.createNamedQuery(namedQuery, classe);
-        q.setParameter(atributo, nomePesq);
+        q.setParameter(atr, nomePesq);
         List<T> lista = q.getResultList();
         return lista;
     }
 
-    
+    @Override
+    public List<T> getEntitysByIds(Integer IdUser, Integer IdGuia, String namedQuery, String atr1, String atr2) {
+        Query q = this.em.createNamedQuery(namedQuery, classe)
+        .setParameter( atr1, IdUser)
+        .setParameter(atr2, IdGuia);
+        List<T> lista = q.getResultList();
+        return lista;
+    }
+
+    @Override
+    public List<T> getEntitysId(Integer id, String namedQuery, String atr) {
+        Query q = this.em.createNamedQuery(namedQuery, classe)
+        .setParameter(atr, id);
+        List<T> lista = q.getResultList();
+        return lista;
+    }
 }

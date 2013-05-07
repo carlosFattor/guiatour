@@ -9,6 +9,7 @@ import br.com.myguiatour.entity.Entreterimento;
 import br.com.myguiatour.entity.Esporte;
 import br.com.myguiatour.entity.Estadia;
 import br.com.myguiatour.entity.Guia;
+import br.com.myguiatour.entity.PontoDefault;
 import br.com.myguiatour.entity.Pontoturistico;
 import br.com.myguiatour.entity.Transporte;
 import java.io.Serializable;
@@ -17,7 +18,6 @@ import java.util.Map;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
@@ -45,6 +45,7 @@ public class CadPontoBB implements Serializable{
     private String nomeGuia;
     @ManagedProperty(value = "#{guiaAtual}")
     private Guia guiaAtual;
+    private PontoDefault pontoDefault;
     private MapModel simpleModel;
     private CadPontoBC cadPontoBC;
     private Marker marker;
@@ -261,4 +262,13 @@ public class CadPontoBB implements Serializable{
     public static void setMsg(FacesMessage msg) {
         CadPontoBB.msg = msg;
     }
+
+    public PontoDefault getPontoDefault() {
+        return pontoDefault;
+    }
+
+    public void setPontoDefault(PontoDefault pontoDefault) {
+        this.pontoDefault = pontoDefault;
+    }
+    
 }
