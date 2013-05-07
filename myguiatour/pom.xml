@@ -123,7 +123,7 @@
         <dependency>
             <groupId>javax.transaction</groupId>
             <artifactId>jta</artifactId>
-            <version>1.1</version>
+            <version>1.0.1B</version>
         </dependency>
         <dependency>
             <groupId>commons-lang</groupId>
@@ -138,7 +138,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>4.1.9.Final</version>
+            <version>3.3.2.GA</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -221,6 +221,27 @@
             <version>3.6.2</version>
         </dependency>
         <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate</artifactId>
+            <version>3.2.5.ga</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.sql</groupId>
+            <artifactId>jdbc-stdext</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>unknown.binary</groupId>
+            <artifactId>mysql-connector-java-5.1.18-bin</artifactId>
+            <version>SNAPSHOT</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>ejb3-persistence</artifactId>
+            <version>1.0.1.GA</version>
+        </dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>6.0</version>
@@ -294,5 +315,9 @@
             <name>A temporary repository created by NetBeans for libraries and jars it could not identify. Please replace the dependencies in this repository with correct ones and delete this repository.</name>
             <url>file:${project.basedir}/lib</url>
         </repository>
+        <repository>
+            <id>java.net</id>
+            <url>http://download.java.net/maven/2/</url>
+        </repository>        
     </repositories>
 </project>

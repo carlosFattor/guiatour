@@ -9,7 +9,7 @@ import br.com.myguiatour.dao.InterfaceDAO;
 import br.com.myguiatour.entity.Guia;
 import br.com.myguiatour.entity.Pontoturistico;
 import br.com.myguiatour.util.FacesContextUtil;
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedProperty;
 import org.primefaces.model.map.MapModel;
@@ -18,7 +18,9 @@ import org.primefaces.model.map.MapModel;
  *
  * @author Carlos
  */
-public class CadPontoBC {
+public class CadPontoBC implements Serializable{
+    private static final long serialVersionUID = 1L;
+    
     @ManagedProperty(value = "#{listaGuias}")
     private List<Guia> listaGuias;
     @ManagedProperty(value = "#{pontoTur}")

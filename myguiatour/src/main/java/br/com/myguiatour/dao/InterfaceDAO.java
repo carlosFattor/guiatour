@@ -1,6 +1,5 @@
 package br.com.myguiatour.dao;
 
-import br.com.myguiatour.entity.Guia;
 import java.io.Serializable;
 import java.util.List;
 import org.hibernate.criterion.DetachedCriteria;

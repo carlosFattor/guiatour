@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.manning.hq.ch03">
+<hibernate-configuration>
+    <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/guiatourdb?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">C$rl0s01</property>
+    <mapping package="br.com.myguiatour.entity"/>
+  </session-factory>
+    <!-- HABILITA A EXIBIÇÃO DO SQL GERADO PELO HIBERNATE E FORMATA-O -->
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.format_sql">true</property>
+    <!-- HABILITA A ATUALIZAÇÃO AUTOMÁTICA DA ESTRUTURA DE TABELAS PELO HIBERNATE -->
+    <property name="hibernate.hbm2ddl.auto">create</property>
+    <!-- CONFIGURAÇÕES DO POOL DE CONEXÕES-->
+    <property name="c3p0.min_size">1</property>
+    <property name="c3p0.max_size">20</property>
+    <property name="c3p0.timeout">300</property>
+    <property name="c3p0.max_statements">80</property>
+    <property name="c3p0.idle_test_period">300</property>
+  
+    <!-- LISTA DE ENTIDADES --> 
+    <mapping class="br.com.myguiatour.entity.Avaliaguia"/>
+    <mapping class="br.com.myguiatour.entity.Avaliaponto"/>
+    <mapping class="br.com.myguiatour.entity.Barerest"/>
+    <mapping class="br.com.myguiatour.entity.Cadguia"/>
+    <mapping class="br.com.myguiatour.entity.Comentario"/>
+    <mapping class="br.com.myguiatour.entity.Download"/>
+    <mapping class="br.com.myguiatour.entity.Entreterimento"/>
+    <mapping class="br.com.myguiatour.entity.Esporte"/>
+    <mapping class="br.com.myguiatour.entity.Esporte"/>
+    <mapping class="br.com.myguiatour.entity.Estadia"/>
+    <mapping class="br.com.myguiatour.entity.Excluir"/>
+    <mapping class="br.com.myguiatour.entity.Guia"/>
+    <mapping class="br.com.myguiatour.entity.Pontoturistico"/>
+    <mapping class="br.com.myguiatour.entity.Transporte"/>
+    <mapping class="br.com.myguiatour.entity.Usuario"/>
+
+  
+</hibernate-configuration>
