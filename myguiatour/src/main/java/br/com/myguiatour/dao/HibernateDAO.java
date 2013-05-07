@@ -2,10 +2,9 @@
 package br.com.myguiatour.dao;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
-import org.hibernate.Session;
-import org.hibernate.criterion.DetachedCriteria;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 /**
  *
@@ -14,30 +13,31 @@ import org.hibernate.criterion.DetachedCriteria;
 public class HibernateDAO<T> implements InterfaceDAO<T>, Serializable{
 
     private static final long serialVersionUID = 1L;    
+    
     private Class<T> classe;
-    private Session session;
+    private EntityManager em;
 
-    public HibernateDAO(Class<T> classe, Session session) {
+    public HibernateDAO(Class<T> classe, EntityManager em) {
         super();
         this.classe = classe;
-        this.session = session;
+        this.em = em;
     }
     
     
     @Override
     public void save(T entity) {
-        session.save(entity);
+        em.persist(entity);
     }
 
     @Override
     public void update(T entity) {
-        session.update(entity);
+        em.merge(entity);
     }
 
     @Override
     public boolean remove(T entity) {
         try {
-            session.delete(entity);
+            em.remove(entity);
             return true;
         } catch (Exception e) {
             System.out.println("Erro ao remover objeto " + e);
@@ -49,7 +49,7 @@ public class HibernateDAO<T> implements InterfaceDAO<T>, Serializable{
     @Override
     public boolean merge(T entity) {
         try {
-            session.merge(entity);
+            em.merge(entity);
             return true;
         } catch (Exception e) {
             System.out.println("Erro ao dar update no objeto "+e);
@@ -59,31 +59,15 @@ public class HibernateDAO<T> implements InterfaceDAO<T>, Serializable{
 
     @Override
     public T getEntity(Serializable id) {
-        T entity = (T)session.get(classe, id);
+        T entity = (T)em.find(classe, id);
         return entity;
     }
-
-    @Override
-    public T getEntityByDeatchedCriteria(DetachedCriteria criteria) {
-        T entity = (T)criteria.getExecutableCriteria(session).uniqueResult();
-        return entity;
-    }
-
-    @Override
-    public List<T> getEntitys() {
-        List<T> entitys = (List<T>)session.createCriteria(classe).list();
-        return entitys;
-    }
-
-    @Override
-    public List<T> getListByDetachedCriteria(DetachedCriteria criteria) {
-        return criteria.getExecutableCriteria(session).list();
-    }    
 
     @Override
         public List<T> getEntitys(String nomePesq, String namedQuery, String atributo) {
-        List<T> entitys = new ArrayList<T>();
-        entitys = (List<T>)session.getNamedQuery(namedQuery).setString(atributo, nomePesq);
-        return entitys;        
+        Query q = this.em.createNamedQuery(namedQuery, classe);
+        q.setParameter(atributo, nomePesq);
+        List<T> lista = q.getResultList();
+        return lista;
     }
 }

@@ -1,9 +1,7 @@
 package br.com.myguiatour.util;
 
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
-import org.hibernate.service.ServiceRegistryBuilder;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  *
@@ -11,32 +9,21 @@ import org.hibernate.service.ServiceRegistryBuilder;
  */
 public class JpaUtil {
 
-    private static final SessionFactory sessionFactory;
-    public static final String HIBERNATE_SESSION = "hibernate_session";
+    public static final String JPA_EM = "jpa_em";
+    private static EntityManagerFactory emf;
 
     static {
-
-        try {
-
-            System.out.println("Tentando configurar a SF");
-
-            Configuration configuration = new Configuration();
-            configuration.configure();
-            ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().
-                    applySettings(configuration.getProperties()).buildServiceRegistry();
-
-            sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-
-            System.out.println("Session factory criada corretamente");
-        } catch (Exception ex) {
-            System.out.println("Ocorreu um  erro ao iniciar a SF. " + ex);
-            throw new ExceptionInInitializerError(ex);
-        }
-
-
+        getEntityManagerFactory();
     }
 
-    public static SessionFactory getSessionFactory() {
-        return sessionFactory;
+    public static synchronized EntityManagerFactory getEntityManagerFactory() {
+        if (emf == null) {
+            try {
+                emf = Persistence.createEntityManagerFactory("guiatourPU");
+            } catch (Throwable t) {
+                t.printStackTrace();
+            }
+        }
+        return emf;
     }
 }

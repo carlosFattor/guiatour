@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
@@ -29,7 +30,7 @@ import org.primefaces.model.map.Marker;
  * @author Carlos
  */
 @ManagedBean(name = "cadPontoBB")
-@ViewScoped
+@SessionScoped
 public class CadPontoBB implements Serializable{
 
     private static final long serialVersionUID = 1L;

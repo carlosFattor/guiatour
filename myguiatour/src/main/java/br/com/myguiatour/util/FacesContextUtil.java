@@ -1,6 +1,7 @@
 package br.com.myguiatour.util;
 
 import javax.faces.context.FacesContext;
+import javax.persistence.EntityManager;
 import org.hibernate.Session;
 
 /**
@@ -9,13 +10,13 @@ import org.hibernate.Session;
  */
 public class FacesContextUtil {
 
-    private static final String HIBERNATE_SESSION = "hibernate_session";
+    public static final String JPA_EM = "jpa_em";
 
-    public static void setRequestSession(Session session) {
-        FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put(HIBERNATE_SESSION, session);
+    public static void setRequestSession(EntityManager em) {
+        FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put(JPA_EM, em);
     }
 
-    public static Session getRequestSession() {
-        return (Session)FacesContext.getCurrentInstance().getExternalContext().getRequestMap().get(HIBERNATE_SESSION);
+    public static EntityManager getRequestSession() {
+        return (EntityManager) FacesContext.getCurrentInstance().getExternalContext().getRequestMap().get(JPA_EM);
     }
 }
