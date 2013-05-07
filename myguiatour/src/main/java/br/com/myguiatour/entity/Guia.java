@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -78,6 +79,16 @@ public class Guia implements Serializable {
     private Integer dtaqGuia;
     @Column(name = "id_usuario")
     private Integer idUsuario;
+    @Transient
+    private Integer Classificacao;
+
+    public Integer getClassificacao() {
+        return Classificacao;
+    }
+
+    public void setClassificacao(Integer Classificacao) {
+        this.Classificacao = Classificacao;
+    }
 
     public Guia() {
     }

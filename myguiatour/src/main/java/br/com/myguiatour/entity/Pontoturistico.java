@@ -19,6 +19,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -87,6 +88,16 @@ public class Pontoturistico implements Serializable {
     private Integer idGuia;
     @Column(name = "id_usuario")
     private Integer idUsuario;
+    @Transient
+    private Integer classificacao;
+
+    public Integer getClassificacao() {
+        return classificacao;
+    }
+
+    public void setClassificacao(Integer classificacao) {
+        this.classificacao = classificacao;
+    }
 
     public Pontoturistico() {
     }

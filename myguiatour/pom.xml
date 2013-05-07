@@ -15,6 +15,27 @@
     </properties>
 
     <dependencies>
+        <!-- ########### HIBERNATE-C3P0 ############ -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-c3p0</artifactId>
+            <version>4.2.1.Final</version>
+        </dependency>
+            
+        <!-- ############### C3P0 ################## -->
+        <dependency>
+            <artifactId>c3p0</artifactId>
+            <groupId>c3p0</groupId>
+            <type>jar</type>
+            <version>0.9.1.2</version>
+        </dependency>
+        
+        <!-- |||| DEPENDÊNCIAS DO MYSQL DRIVER  |||| -->        
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.24</version>
+        </dependency> 
         <dependency>
             <groupId>org.glassfish</groupId>
             <artifactId>javax.faces</artifactId>

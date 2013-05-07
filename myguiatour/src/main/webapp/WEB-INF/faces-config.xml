@@ -8,9 +8,9 @@
               xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd">
 
 
-    <!--<lifecycle>
+    <lifecycle>
         <phase-listener>br.com.myguiatour.util.PhaseListener</phase-listener>
-    </lifecycle>-->
+    </lifecycle>
     
     <application>
         <resource-bundle>

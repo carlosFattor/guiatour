@@ -3,9 +3,6 @@ package br.com.myguiatour.util;
 import javax.faces.event.PhaseEvent;
 import javax.faces.event.PhaseId;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import org.hibernate.Session;
-
 /**
  *
  * @author Carlos

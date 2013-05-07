@@ -19,7 +19,7 @@ public class JpaUtil {
     public static synchronized EntityManagerFactory getEntityManagerFactory() {
         if (emf == null) {
             try {
-                emf = Persistence.createEntityManagerFactory("guiatourPU");
+                emf = Persistence.createEntityManagerFactory("myguiatourPU");
             } catch (Throwable t) {
                 t.printStackTrace();
             }

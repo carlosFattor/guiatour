@@ -9,6 +9,8 @@ import java.util.List;
  */
 public interface InterfaceDAO<T> {
 
+    public void beginTransaction();
+    public void commitTransaction();
     void save(T entity);
     void update(T entity);
     boolean remove(T entity);

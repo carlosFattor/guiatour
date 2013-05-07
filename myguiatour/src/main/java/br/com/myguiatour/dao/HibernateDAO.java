@@ -4,6 +4,7 @@ package br.com.myguiatour.dao;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 /**
@@ -16,6 +17,7 @@ public class HibernateDAO<T> implements InterfaceDAO<T>, Serializable{
     
     private Class<T> classe;
     private EntityManager em;
+    EntityTransaction tx;
 
     public HibernateDAO(Class<T> classe, EntityManager em) {
         super();
@@ -23,10 +25,26 @@ public class HibernateDAO<T> implements InterfaceDAO<T>, Serializable{
         this.em = em;
     }
     
-    
+    @Override
+    public void beginTransaction() {
+        tx = this.em.getTransaction();
+        tx.begin();
+    }
+
+    @Override
+    public void commitTransaction() {
+        tx.commit();        
+    }
     @Override
     public void save(T entity) {
-        em.persist(entity);
+        try {
+            this.beginTransaction();
+            em.persist(entity);
+            this.commitTransaction();
+        } catch (Exception e) {
+            e.printStackTrace();
+            tx.rollback();
+        }        
     }
 
     @Override
@@ -70,4 +88,6 @@ public class HibernateDAO<T> implements InterfaceDAO<T>, Serializable{
         List<T> lista = q.getResultList();
         return lista;
     }
+
+    
 }

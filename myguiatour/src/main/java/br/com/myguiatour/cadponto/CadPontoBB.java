@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -30,7 +31,7 @@ import org.primefaces.model.map.Marker;
  * @author Carlos
  */
 @ManagedBean(name = "cadPontoBB")
-@SessionScoped
+@ViewScoped
 public class CadPontoBB implements Serializable{
 
     private static final long serialVersionUID = 1L;
@@ -42,6 +43,7 @@ public class CadPontoBB implements Serializable{
     private String longitude = "";
     private String city;
     private String nomeGuia;
+    @ManagedProperty(value = "#{guiaAtual}")
     private Guia guiaAtual;
     private MapModel simpleModel;
     private CadPontoBC cadPontoBC;
@@ -81,6 +83,13 @@ public class CadPontoBB implements Serializable{
                 context.execute("confPonto.show();");
             }
         }
+    }
+    
+    public void cadastrarGuia() {
+        //msg = new FacesMessage("Sucesso", guiaAtual.getNomeGuia() + " Cadastrada");        
+        cadPontoBC.cadGuia(this.guiaAtual);        
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+        this.guiaStatus = false;
     }
 
     /**
