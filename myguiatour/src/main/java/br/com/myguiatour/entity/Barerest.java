@@ -19,19 +19,17 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "barerest", catalog = "guiatourdb", schema = "")
-@PrimaryKeyJoinColumn(name="ID_PONTO",
+@PrimaryKeyJoinColumn(name = "ID_PONTO",
         referencedColumnName = "id_ponto")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Barerest.findAll", query = "SELECT b FROM Barerest b"),
-    @NamedQuery(name = "Barerest.findByIdBarRest", query = "SELECT b FROM Barerest b WHERE b.idBarRest = :idBarRest"),
     @NamedQuery(name = "Barerest.findByFotoBar", query = "SELECT b FROM Barerest b WHERE b.fotoBar = :fotoBar"),
     @NamedQuery(name = "Barerest.findByCategoria", query = "SELECT b FROM Barerest b WHERE b.categoria = :categoria"),
     @NamedQuery(name = "Barerest.findByCustoMedio", query = "SELECT b FROM Barerest b WHERE b.custoMedio = :custoMedio"),
     @NamedQuery(name = "Barerest.findByIdPonto", query = "SELECT b FROM Barerest b WHERE b.idPonto = :idPonto")})
-public class Barerest extends Pontoturistico{
-    
-    private Integer idBarRest;
+public class Barerest extends Pontoturistico {
+
     @Size(max = 20)
     @Column(name = "foto_bar")
     private String fotoBar;
@@ -40,21 +38,12 @@ public class Barerest extends Pontoturistico{
     private String categoria;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "custo_medio")
-    private Float custoMedio;    
+    private Float custoMedio;
 
     public Barerest() {
     }
 
     public Barerest(Integer idBarRest) {
-        this.idBarRest = idBarRest;
-    }
-
-    public Integer getIdBarRest() {
-        return idBarRest;
-    }
-
-    public void setIdBarRest(Integer idBarRest) {
-        this.idBarRest = idBarRest;
     }
 
     public String getFotoBar() {
@@ -80,30 +69,4 @@ public class Barerest extends Pontoturistico{
     public void setCustoMedio(Float custoMedio) {
         this.custoMedio = custoMedio;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idBarRest != null ? idBarRest.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Barerest)) {
-            return false;
-        }
-        Barerest other = (Barerest) object;
-        if ((this.idBarRest == null && other.idBarRest != null) || (this.idBarRest != null && !this.idBarRest.equals(other.idBarRest))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "br.com.myguaitour.entity.Barerest[ idBarRest=" + idBarRest + " ]";
-    }
-    
 }

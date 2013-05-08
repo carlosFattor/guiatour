@@ -28,8 +28,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Avaliaponto.findByIdAvaliaPonto", query = "SELECT a FROM Avaliaponto a WHERE a.idAvaliaPonto = :idAvaliaPonto"),
     @NamedQuery(name = "Avaliaponto.findByNota", query = "SELECT a FROM Avaliaponto a WHERE a.nota = :nota"),
     @NamedQuery(name = "Avaliaponto.findByIdGuia", query = "SELECT a FROM Avaliaponto a WHERE a.idGuia = :idGuia"),
-    @NamedQuery(name = "Avaliaponto.findByIdUsuario", query = "SELECT a FROM Avaliaponto a WHERE a.idUsuario = :idUsuario")})
+    @NamedQuery(name = "Avaliaponto.findByIdUsuario", query = "SELECT a FROM Avaliaponto a WHERE a.idUsuario = :idUsuario"),
+    @NamedQuery(name = "Avaliaponto.findByIdUsuarioIdGuia", query = "SELECT a FROM Avaliaponto a WHERE a.idUsuario = :idUsuario and a.idGuia = :idGuia")})
 public class Avaliaponto implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -107,5 +109,4 @@ public class Avaliaponto implements Serializable {
     public String toString() {
         return "br.com.myguaitour.entity.Avaliaponto[ idAvaliaPonto=" + idAvaliaPonto + " ]";
     }
-    
 }

@@ -13,6 +13,8 @@ import br.com.myguiatour.entity.PontoDefault;
 import br.com.myguiatour.entity.Pontoturistico;
 import br.com.myguiatour.entity.Transporte;
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import javax.faces.application.FacesMessage;
@@ -32,10 +34,9 @@ import org.primefaces.model.map.Marker;
  */
 @ManagedBean(name = "cadPontoBB")
 @ViewScoped
-public class CadPontoBB implements Serializable{
+public class CadPontoBB implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
     private String nomePesq;
     private boolean guiaStatus = false;
     private boolean pontoStatus = false;
@@ -57,9 +58,10 @@ public class CadPontoBB implements Serializable{
     private Barerest bar;
     private String tipoPonto;
     public static FacesMessage msg;
-    
+
     public CadPontoBB() {
         city = "36.879466, 30.667648";
+        pontoDefault = new PontoDefault();
         simpleModel = new DefaultMapModel();
         esporte = new Esporte();
         entreterimento = new Entreterimento();
@@ -67,7 +69,7 @@ public class CadPontoBB implements Serializable{
         transporte = new Transporte();
         bar = new Barerest();
     }
-    
+
     public void pesqGuia() {
         simpleModel = new DefaultMapModel();
         cadPontoBC = new CadPontoBC();
@@ -85,10 +87,10 @@ public class CadPontoBB implements Serializable{
             }
         }
     }
-    
+
     public void cadastrarGuia() {
         //msg = new FacesMessage("Sucesso", guiaAtual.getNomeGuia() + " Cadastrada");        
-        cadPontoBC.cadGuia(this.guiaAtual);        
+        cadPontoBC.cadGuia(this.guiaAtual);
         FacesContext.getCurrentInstance().addMessage(null, msg);
         this.guiaStatus = false;
     }
@@ -105,12 +107,50 @@ public class CadPontoBB implements Serializable{
         nomeGuia = ((String) parameterMap.get("cidade"));
         getGuiaAtual().setLatlngGuia(latitude + "," + longitude);
     }
-    
-    
+
+    public void cadastraPonto() {
+        Date data = Calendar.getInstance().getTime();
+        pontoDefault.setDataCadPonto(data);
+        
+        if (tipoPonto.equals("estadia")) {
+            estadia.setLatlngPonto(latitude + "," + longitude);
+            estadia.setIdGuia(guiaAtual.getIdGuia());
+            estadia.setIdUsuario(1);
+            cadPontoBC.cadPontoEstadia(pontoDefault, estadia);
+
+        } else if (tipoPonto.equals("entreterimento")) {
+            entreterimento.setLatlngPonto(latitude + "," + longitude);
+            entreterimento.setIdGuia(guiaAtual.getIdGuia());
+            entreterimento.setIdUsuario(1);
+            cadPontoBC.cadPontoEntreterimento(pontoDefault, entreterimento);
+
+        } else if (tipoPonto.equals("barRest")) {
+            bar.setLatlngPonto(latitude + "," + longitude);
+            bar.setIdGuia(guiaAtual.getIdGuia());
+            bar.setIdUsuario(1);
+            cadPontoBC.cadPontoBar(pontoDefault, bar);
+
+        } else if (tipoPonto.equals("transporte")) {
+            transporte.setLatlngPonto(latitude + "," + longitude);
+            transporte.setIdGuia(guiaAtual.getIdGuia());
+            transporte.setIdUsuario(1);
+            cadPontoBC.cadPontoTransporte(pontoDefault, transporte);
+
+        } else if (tipoPonto.equals("esporte")) {
+            esporte.setLatlngPonto(latitude + "," + longitude);
+            esporte.setIdGuia(guiaAtual.getIdGuia());
+            esporte.setIdUsuario(1);
+            cadPontoBC.cadPontoEsporte(pontoDefault, esporte);
+
+        }
+        //msg = new FacesMessage("Sucesso", pontoDefault.getNomePonto() + " Cadastrada");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+
     public void onMarkerSelect(OverlaySelectEvent event) {
         marker = (Marker) event.getOverlay();
     }
-    
+
     public String getNomePesq() {
         return nomePesq;
     }
@@ -270,5 +310,4 @@ public class CadPontoBB implements Serializable{
     public void setPontoDefault(PontoDefault pontoDefault) {
         this.pontoDefault = pontoDefault;
     }
-    
 }

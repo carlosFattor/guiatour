@@ -4,16 +4,13 @@
  */
 package br.com.myguiatour.entity;
 
-import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,10 +23,11 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "entreterimento", catalog = "guiatourdb", schema = "")
+@PrimaryKeyJoinColumn(name = "ID_PONTO",
+        referencedColumnName = "id_ponto")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Entreterimento.findAll", query = "SELECT e FROM Entreterimento e"),
-    @NamedQuery(name = "Entreterimento.findByIdEntreterimento", query = "SELECT e FROM Entreterimento e WHERE e.idEntreterimento = :idEntreterimento"),
     @NamedQuery(name = "Entreterimento.findByFotoEntreterimento", query = "SELECT e FROM Entreterimento e WHERE e.fotoEntreterimento = :fotoEntreterimento"),
     @NamedQuery(name = "Entreterimento.findByCategoria", query = "SELECT e FROM Entreterimento e WHERE e.categoria = :categoria"),
     @NamedQuery(name = "Entreterimento.findByHorarioInicio", query = "SELECT e FROM Entreterimento e WHERE e.horarioInicio = :horarioInicio"),
@@ -38,13 +36,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Entreterimento.findByPeriodoInicio", query = "SELECT e FROM Entreterimento e WHERE e.periodoInicio = :periodoInicio"),
     @NamedQuery(name = "Entreterimento.findByPeriodoFim", query = "SELECT e FROM Entreterimento e WHERE e.periodoFim = :periodoFim"),
     @NamedQuery(name = "Entreterimento.findByIdPonto", query = "SELECT e FROM Entreterimento e WHERE e.idPonto = :idPonto")})
-public class Entreterimento implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id_entreterimento")
-    private Integer idEntreterimento;
+public class Entreterimento extends Pontoturistico {
+
     @Size(max = 20)
     @Column(name = "foto_entreterimento")
     private String fotoEntreterimento;
@@ -66,22 +59,11 @@ public class Entreterimento implements Serializable {
     @Column(name = "periodo_fim")
     @Temporal(TemporalType.DATE)
     private Date periodoFim;
-    @Column(name = "id_ponto")
-    private Integer idPonto;
 
     public Entreterimento() {
     }
 
     public Entreterimento(Integer idEntreterimento) {
-        this.idEntreterimento = idEntreterimento;
-    }
-
-    public Integer getIdEntreterimento() {
-        return idEntreterimento;
-    }
-
-    public void setIdEntreterimento(Integer idEntreterimento) {
-        this.idEntreterimento = idEntreterimento;
     }
 
     public String getFotoEntreterimento() {
@@ -139,38 +121,4 @@ public class Entreterimento implements Serializable {
     public void setPeriodoFim(Date periodoFim) {
         this.periodoFim = periodoFim;
     }
-
-    public Integer getIdPonto() {
-        return idPonto;
-    }
-
-    public void setIdPonto(Integer idPonto) {
-        this.idPonto = idPonto;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idEntreterimento != null ? idEntreterimento.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Entreterimento)) {
-            return false;
-        }
-        Entreterimento other = (Entreterimento) object;
-        if ((this.idEntreterimento == null && other.idEntreterimento != null) || (this.idEntreterimento != null && !this.idEntreterimento.equals(other.idEntreterimento))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "br.com.myguaitour.entity.Entreterimento[ idEntreterimento=" + idEntreterimento + " ]";
-    }
-    
 }

@@ -46,6 +46,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Pontoturistico.findByUrlPonto", query = "SELECT p FROM Pontoturistico p WHERE p.urlPonto = :urlPonto"),
     @NamedQuery(name = "Pontoturistico.findByDataCadPonto", query = "SELECT p FROM Pontoturistico p WHERE p.dataCadPonto = :dataCadPonto"),
     @NamedQuery(name = "Pontoturistico.findByLatlngPonto", query = "SELECT p FROM Pontoturistico p WHERE p.latlngPonto = :latlngPonto"),
+    @NamedQuery(name = "Pontoturistico.findByIdGuiaIdUsuario", query = "SELECT p FROM Pontoturistico p WHERE p.idGuia = :idGuia and p.idUsuario = :idUsuario"),
     @NamedQuery(name = "Pontoturistico.findByIdGuia", query = "SELECT p FROM Pontoturistico p WHERE p.idGuia = :idGuia"),
     @NamedQuery(name = "Pontoturistico.findByIdUsuario", query = "SELECT p FROM Pontoturistico p WHERE p.idUsuario = :idUsuario")})
 public abstract class Pontoturistico implements Serializable {

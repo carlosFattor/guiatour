@@ -107,16 +107,19 @@
                                         <f:facet name="header">  
                                             <h:outputText value="Editar" />  
                                         </f:facet>
-                                        <h:button value="Editar" outcome="editar">
-                                            <f:param name="pontoTur" value="#{ponto.idPonto}" />
+                                        <h:button value="Editar" outcome="EditPonto">
+                                            <f:param name="pontoTur" value="#{ponto}" />
                                         </h:button>
                                     </p:column> 
                                     <p:column>  
                                         <f:facet name="header">  
                                             <h:outputText value="Visualizar" />
                                         </f:facet>
-                                        <h:link value="Vizualizar" outcome="visualizar" includeViewParams="true">
-                                            <f:param name="pontoTur" value="#{ponto.idPonto}" />
+                                        <h:commandButton value="Visualização" action="/public/ViewPonto">
+                                            <f:param name="pontoTur" value="#{ponto}" />
+                                        </h:commandButton>
+                                        <h:link value="Vizualizar" outcome="ViewPonto"  includeViewParams="true">
+                                            <f:param name="pontoTur" value="#{ponto}" />
                                         </h:link>
                                     </p:column> 
                                 </p:dataTable>

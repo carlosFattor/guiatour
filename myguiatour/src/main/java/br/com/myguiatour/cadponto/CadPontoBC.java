@@ -7,10 +7,17 @@ package br.com.myguiatour.cadponto;
 import br.com.myguiatour.avaliacoes.AvaliacoesBC;
 import br.com.myguiatour.dao.HibernateDAO;
 import br.com.myguiatour.dao.InterfaceDAO;
+import br.com.myguiatour.entity.Barerest;
+import br.com.myguiatour.entity.Entreterimento;
+import br.com.myguiatour.entity.Esporte;
+import br.com.myguiatour.entity.Estadia;
 import br.com.myguiatour.entity.Guia;
+import br.com.myguiatour.entity.PontoDefault;
 import br.com.myguiatour.entity.Pontoturistico;
+import br.com.myguiatour.entity.Transporte;
 import br.com.myguiatour.util.FacesContextUtil;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedProperty;
@@ -31,13 +38,16 @@ public class CadPontoBC {
     private List<Pontoturistico> pontoTur;
     private Guia guiaAtual;
     private boolean multGuia = false;
-    private HibernateDAO cadPontos;
+    //private HibernateDAO cadPontos;
     private MapModel simpleModel;
     private String centerCity;
     private MapModel advancedModel;
     @ManagedProperty(value = "#{avaliacoesBC}")
     private AvaliacoesBC avaliacoesBC;
-
+    Calendar data = Calendar.getInstance();
+    List<Pontoturistico> pontoEnc;
+    
+    
     private InterfaceDAO<Guia> guiaDAO() {
         InterfaceDAO<Guia> guiaDAO = new HibernateDAO<Guia>(Guia.class, FacesContextUtil.getRequestSession());
         return guiaDAO;
@@ -68,8 +78,9 @@ public class CadPontoBC {
     private void findPoint() {
         pontoTur = new ArrayList<Pontoturistico>();
         for (Guia guia : listaGuias) {
-            List<Pontoturistico> pontoEnc = new ArrayList<Pontoturistico>();
+            pontoEnc = new ArrayList<Pontoturistico>();
             pontoEnc = (List<Pontoturistico>) pontoDAO().getEntitysId(guia.getIdGuia(), "Pontoturistico.findByIdGuia", "idGuia");
+            pontoEnc = this.setClassificacaoPonto();
             for (Pontoturistico ponto : pontoEnc) {
                 pontoTur.add(ponto);
             }
@@ -113,7 +124,7 @@ public class CadPontoBC {
 
                 LatLng latlng = new LatLng(Double.parseDouble(coord[0]), Double.parseDouble(coord[1]));
 
-                Integer rating = Integer.parseInt(ponto.getClassificacao().toString());
+                Integer rating = ponto.getClassificacao();
                 pontoTur.get(i).setClassificacao(rating);
 
                 advancedModel.addOverlay(new Marker(latlng, ponto.getNomePonto(), ponto));
@@ -158,7 +169,11 @@ public class CadPontoBC {
 
     private void setClassificacaoGuia() {
         avaliacoesBC = new AvaliacoesBC();
-        listaGuias = avaliacoesBC.setClassificacao(listaGuias);
+        listaGuias = avaliacoesBC.setClassificacaoGuia(listaGuias);
+    }
+    
+    private List<Pontoturistico> setClassificacaoPonto() {
+        return avaliacoesBC.setClassificacaoPonto(pontoEnc);
     }
 
     public List<Pontoturistico> getPontoTur() {
@@ -201,13 +216,7 @@ public class CadPontoBC {
         this.multGuia = multGuia;
     }
 
-    public HibernateDAO getCadPontos() {
-        return cadPontos;
-    }
-
-    public void setCadPontos(HibernateDAO cadPontos) {
-        this.cadPontos = cadPontos;
-    }
+    
 
     public MapModel getSimpleModel() {
         return simpleModel;
@@ -216,4 +225,122 @@ public class CadPontoBC {
     public void setSimpleModel(MapModel simpleModel) {
         this.simpleModel = simpleModel;
     }
+
+    void cadPontoEstadia(PontoDefault pontoDefault, Estadia estadia) {
+        estadia = this.preencheEstadia(pontoDefault, estadia);
+        try {
+            pontoDAO().save(estadia);
+            
+            CadPontoBB.msg = new FacesMessage("Sucesso", pontoDefault.getNomePonto() + " Cadastrada");
+        } catch (Exception e) {
+            CadPontoBB.msg = new FacesMessage("Erro", pontoDefault.getNomePonto() + " Não Cadastrada");
+        }
+    }
+
+    private Estadia preencheEstadia(PontoDefault pontoDefault, Estadia estadia) {
+        estadia.setNomePonto(pontoDefault.getNomePonto());
+        estadia.setFotoPonto1(pontoDefault.getFotoPonto1());
+        estadia.setFotoPonto2(pontoDefault.getFotoPonto2());
+        estadia.setFotoPonto3(pontoDefault.getFotoPonto3());
+        estadia.setInfoPonto(pontoDefault.getInfoPonto());
+        estadia.setComentarioPonto(pontoDefault.getComentarioPonto());
+        estadia.setUrlPonto(pontoDefault.getUrlPonto());
+        estadia.setDataCadPonto(pontoDefault.getDataCadPonto());
+
+        return estadia;
+    }
+
+    void cadPontoEntreterimento(PontoDefault pontoDefault, Entreterimento entreterimento) {
+        entreterimento = this.preencheEntreterimento(pontoDefault, entreterimento);
+        try {
+            pontoDAO().save(entreterimento);
+            CadPontoBB.msg = new FacesMessage("Sucesso", pontoDefault.getNomePonto() + " Cadastrada");
+        } catch (Exception e) {
+            CadPontoBB.msg = new FacesMessage("Erro", pontoDefault.getNomePonto() + " Não Cadastrada");
+        }
+    }
+
+    private Entreterimento preencheEntreterimento(PontoDefault ponto, Entreterimento entre) {
+        entre.setNomePonto(ponto.getNomePonto());
+        entre.setFotoPonto1(ponto.getFotoPonto1());
+        entre.setFotoPonto2(ponto.getFotoPonto2());
+        entre.setFotoPonto3(ponto.getFotoPonto3());
+        entre.setInfoPonto(ponto.getInfoPonto());
+        entre.setComentarioPonto(ponto.getComentarioPonto());
+        entre.setUrlPonto(ponto.getUrlPonto());
+        entre.setDataCadPonto(ponto.getDataCadPonto());
+
+        return entre;
+    }
+
+    void cadPontoBar(PontoDefault pontoDefault, Barerest bar) {
+        bar = this.preencheBar(pontoDefault, bar);
+        try {
+            pontoDAO().save(bar);
+            CadPontoBB.msg = new FacesMessage("Sucesso", pontoDefault.getNomePonto() + " Cadastrada");
+        } catch (Exception e) {
+            CadPontoBB.msg = new FacesMessage("Erro", pontoDefault.getNomePonto() + " Não Cadastrada");
+        }
+    }
+
+    private Barerest preencheBar(PontoDefault ponto, Barerest bar) {
+        bar.setNomePonto(ponto.getNomePonto());
+        bar.setFotoPonto1(ponto.getFotoPonto1());
+        bar.setFotoPonto2(ponto.getFotoPonto2());
+        bar.setFotoPonto3(ponto.getFotoPonto3());
+        bar.setInfoPonto(ponto.getInfoPonto());
+        bar.setComentarioPonto(ponto.getComentarioPonto());
+        bar.setUrlPonto(ponto.getUrlPonto());
+        bar.setDataCadPonto(ponto.getDataCadPonto());
+
+        return bar;
+    }
+
+    void cadPontoTransporte(PontoDefault pontoDefault, Transporte transporte) {
+        transporte = this.preencheTransporte(pontoDefault, transporte);
+        try {
+            pontoDAO().save(transporte);
+            CadPontoBB.msg = new FacesMessage("Sucesso", pontoDefault.getNomePonto() + " Cadastrada");
+        } catch (Exception e) {
+            CadPontoBB.msg = new FacesMessage("Erro", pontoDefault.getNomePonto() + " Não Cadastrada");
+        }
+    }
+
+    private Transporte preencheTransporte(PontoDefault ponto, Transporte transporte) {
+        transporte.setNomePonto(ponto.getNomePonto());
+        transporte.setFotoPonto1(ponto.getFotoPonto1());
+        transporte.setFotoPonto2(ponto.getFotoPonto2());
+        transporte.setFotoPonto3(ponto.getFotoPonto3());
+        transporte.setInfoPonto(ponto.getInfoPonto());
+        transporte.setComentarioPonto(ponto.getComentarioPonto());
+        transporte.setUrlPonto(ponto.getUrlPonto());
+        transporte.setDataCadPonto(ponto.getDataCadPonto());
+
+        return transporte;
+    }
+
+    void cadPontoEsporte(PontoDefault pontoDefault, Esporte esporte) {
+        esporte = this.preencheEsporte(pontoDefault, esporte);
+        try {
+            pontoDAO().save(esporte);
+            CadPontoBB.msg = new FacesMessage("Sucesso", pontoDefault.getNomePonto() + " Cadastrada");
+        } catch (Exception e) {
+            CadPontoBB.msg = new FacesMessage("Erro", pontoDefault.getNomePonto() + " Não Cadastrada");
+        }
+    }
+
+    private Esporte preencheEsporte(PontoDefault ponto, Esporte esporte) {
+        esporte.setNomePonto(ponto.getNomePonto());
+        esporte.setFotoPonto1(ponto.getFotoPonto1());
+        esporte.setFotoPonto2(ponto.getFotoPonto2());
+        esporte.setFotoPonto3(ponto.getFotoPonto3());
+        esporte.setInfoPonto(ponto.getInfoPonto());
+        esporte.setComentarioPonto(ponto.getComentarioPonto());
+        esporte.setUrlPonto(ponto.getUrlPonto());
+        esporte.setDataCadPonto(ponto.getDataCadPonto());
+
+        return esporte;
+    }
+
+    
 }
